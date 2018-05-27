@@ -1,9 +1,9 @@
-package com.metrosoft.prediction.matches
+package com.metrosoft.prediction.match
 
 import java.time.LocalDateTime
 import javax.validation.constraints.NotEmpty
 
-data class NewMatch(
+data class NewMatchDto(
         @NotEmpty val label: String,
         @NotEmpty val time: LocalDateTime,
         @NotEmpty val team1: String,

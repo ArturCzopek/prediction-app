@@ -54,6 +54,33 @@
             <column name="MTC_CALCULATED" type="boolean" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
+            <column name="MTC_RESULT_ADDED" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="Create types table" author="arturc">
+        <createTable tableName="TYPES">
+            <column name="TP_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="TP_USER_ID" type="int">
+                <constraints nullable="false" foreignKeyName="FK_TYPE_USER" references="USERS(USR_ID)"/>
+            </column>
+            <column name="TP_MATCH_ID" type="int">
+                <constraints nullable="false" foreignKeyName="FK_TYPE_MATCH" references="MATCHES(MTC_ID)"/>
+            </column>
+            <column name="TP_GOALS_1" type="int" defaultValue="null"></column>
+            <column name="TP_GOALS_2" type="int" defaultValue="null"></column>
+            <column name="TP_CALCULATED" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TP_POINTS" type="int" defaultValue="null">
+            </column>
+            <column name="TP_CREATED" type="timestamp">
+                <constraints nullable="false" />
+            </column>
         </createTable>
     </changeSet>
 

@@ -1,6 +1,7 @@
 package com.metrosoft.prediction.user
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
@@ -25,10 +26,12 @@ data class User(
         val role: UserRole = UserRole.REGULAR,
 
         @NotEmpty
+        @JsonIgnore
         @Column(name = "USR_FIRST_NAME", length = 50)
         val firstName: String,
 
         @NotEmpty
+        @JsonIgnore
         @Column(name = "USR_LAST_NAME", length = 50)
         val lastName: String,
 
@@ -38,4 +41,7 @@ data class User(
         @CreatedDate
         @Column(name = "USR_CREATED")
         val created: LocalDateTime
-)
+) {
+    val fullName
+        get() = "$firstName $lastName"
+}

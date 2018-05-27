@@ -8,7 +8,6 @@
     <include file="db/changelog/db.changelog-master.xml"/>
 
     <changeSet id="Sample users data" author="arturc">
-
         <loadData file="db/changelog/samples/users.csv"
                   tableName="USERS"
                   separator=";">
@@ -22,7 +21,6 @@
     </changeSet>
 
     <changeSet id="Sample matches data" author="arturc">
-
         <loadData file="db/changelog/samples/matches.csv"
                   tableName="MATCHES"
                   separator=";">
@@ -30,6 +28,18 @@
             <column name="MTC_TIME" type="DATETIME"/>
             <column name="MTC_TEAM_1" type="STRING"/>
             <column name="MTC_TEAM_2" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="Sample types data" author="arturc">
+        <loadData file="db/changelog/samples/types.csv"
+                  tableName="TYPES"
+                  separator=";">
+            <column name="TP_USER_ID" type="NUMERIC"/>
+            <column name="TP_MATCH_ID" type="NUMERIC"/>
+            <column name="TP_GOALS_1" type="NUMERIC"/>
+            <column name="TP_GOALS_2" type="NUMERIC"/>
+            <column name="TP_CREATED" type="DATETIME"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>

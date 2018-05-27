@@ -1,5 +1,6 @@
-package com.metrosoft.prediction.matches
+package com.metrosoft.prediction.match
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -15,6 +16,7 @@ data class Match(
         val id: Long?,
 
         @NotEmpty
+        @JsonIgnore
         @Column(name = "MTC_LABEL", length = 200)
         val label: String,
 
@@ -35,21 +37,10 @@ data class Match(
         @Column(name = "MTC_GOALS_2")
         val goals2: Int? = null,
 
-        @Column(name = "MTC_CALCULATED")
-        val calculated: Boolean = false
+        @Column(name = "MTC_RESULT_ADDED")
+        val resultAdded: Boolean = false
 ) {
-    val winner: Winner
-        get() = when {
-            goals1 == null || goals2 == null -> Winner.NO_RESULT
-            goals1 > goals2 -> Winner.TEAM_1
-            goals1 < goals2 -> Winner.TEAM_2
-            else -> Winner.DRAW
-        }
 
-    enum class Winner {
-        TEAM_1,
-        TEAM_2,
-        DRAW,
-        NO_RESULT;
-    }
+    val fullLabel
+        get() = "[$label] $team1 vs $team2"
 }
