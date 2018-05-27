@@ -1,0 +1,17 @@
+*.class
+*.log
+*.jar
+
+.idea/**/
+.idea_modules/
+
+server/out/
+server/.gradle/
+server/build/
+
+client/node_modules/
+client/typings/
+
+
+!server/gradle-wrapper.jar
+
