@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="Create users table" author="arturc">
+        <!-- USERS -->
+        <createTable tableName="USERS">
+            <column name="USR_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USR_LOGIN" type="nvarchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="USR_ROLE" type="nvarchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="USR_FIRST_NAME" type="nvarchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="USR_LAST_NAME" type="nvarchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="USR_ENABLED" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="USR_CREATED" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="Create matches table" author="arturc">
+        <createTable tableName="MATCHES">
+            <column name="MTC_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="MTC_LABEL" type="nvarchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MTC_TIME" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MTC_TEAM_1" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MTC_TEAM_2" type="nvarchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MTC_GOALS_1" type="int" defaultValue="null"></column>
+            <column name="MTC_GOALS_2" type="int" defaultValue="null"></column>
+            <column name="MTC_CALCULATED" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

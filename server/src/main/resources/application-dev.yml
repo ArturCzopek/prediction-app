@@ -1,0 +1,14 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master-sample-data.xml
+  jpa:
+    hibernate:
+      ddl-auto: none
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:prediction
+#  security:
+#    static-user: metrosoft\arturc    // todo turn on when security will be created for development purposes

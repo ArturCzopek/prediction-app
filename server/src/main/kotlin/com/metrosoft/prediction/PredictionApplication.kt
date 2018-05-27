@@ -1,4 +1,4 @@
-package com.metrosoft.predictionapp
+package com.metrosoft.prediction
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

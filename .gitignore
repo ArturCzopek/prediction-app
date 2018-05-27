@@ -8,6 +8,7 @@
 server/out/
 server/.gradle/
 server/build/
+server/src/main/resources/db/changelog/samples/users.csv
 
 client/node_modules/
 client/typings/
@@ -15,3 +16,4 @@ client/typings/
 
 !server/gradle-wrapper.jar
 
+/server/src/main/resources/db/changelog/samples/users.csv

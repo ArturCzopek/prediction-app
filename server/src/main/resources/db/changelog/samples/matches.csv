@@ -1,0 +1,14 @@
+MTC_LABEL;MTC_TIME;MTC_TEAM_1;MTC_TEAM_2
+Grupa A;'2018-06-14T17:00:00.000';Rosja;Arabia Saudyjska
+Grupa A;'2018-06-15T14:00:00.000';Egipt;Urugwaj
+Grupa A;'2018-06-19T20:00:00.000';Rosja;Egipt
+Grupa A;'2018-06-20T17:00:00.000';Urugwaj;Arabia Saudyjska
+Grupa A;'2018-06-25T16:00:00.000';Urugwaj;Rosja
+Grupa A;'2018-06-25T16:00:00.000';Arabia Saudyjska;Egipt
+
+Grupa B;'2018-06-15T17:00:00.000';Maroko;Iran
+Grupa B;'2018-06-15T20:00:00.000';Portugalia;Hiszpania
+Grupa B;'2018-06-20T14:00:00.000';Portugalia;Maroko
+Grupa B;'2018-06-20T20:00:00.000';Iran;Hiszpania
+Grupa B;'2018-06-25T20:00:00.000';Hiszpania;Maroko
+Grupa B;'2018-06-25T20:00:00.000';Iran;Portugalia
