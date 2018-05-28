@@ -120,11 +120,12 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## To do - 1.0
 
-- [ ] - BE - introducing whole WC 2018 calendar
+- [ ] - FE - nice loader :)
 - [ ] - FE - front-end integration with security
 - [ ] - FE - action buttons on match card (add prediction, add result)
 - [ ] - FE - adding match result (only admin user)
-- [ ] - FE - adding user type/prediction (only admin user)
+- [ ] - FE - adding new match (only admin user)
+- [ ] - FE - adding user type/prediction
 - [ ] - FE - case handling on match card (add type only if match has not started yet)
 - [ ] - FE - whole ranking table
 - [ ] - D - installation instruction
@@ -144,7 +145,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## In progress
 
-- [ ] - FE - beautiful match card with match time, result, user points etc - AC
+- [ ] - BE - introducing whole WC 2018 calendar - AC
+
 
 ## Done
 - [x] - BE - Database structure
@@ -154,6 +156,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - BE - result functionality, calculating table, calculating match etc
 - [x] - BE - type functionality, adding type by user
 - [x] - BE - provided sample data
+- [x] - FE - beautiful match card with match time, result, user points etc
 
 
 ## License

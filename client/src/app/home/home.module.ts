@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatchGroupComponent} from "./match-group.component";
 import {SharedModule} from "../shared/shared.module";
-import {MatchComponent} from "./match.component";
+import {MatchCardComponent} from "./match-card.component";
 import {AddMatchComponent} from "./add-match.component";
 import {HelloComponent} from "./hello.component";
 
@@ -14,7 +14,7 @@ import {HelloComponent} from "./hello.component";
     HelloComponent,
     HomeComponent,
     MatchGroupComponent,
-    MatchComponent
+    MatchCardComponent
   ],
   imports: [
     HttpClientModule,
