@@ -120,6 +120,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## To do - 1.0
 
+- [ ] - BE - gradle build task for building front-end and copying files to jar + tests if it works ofc
 - [ ] - FE - nice loader :)
 - [ ] - FE - front-end integration with security
 - [ ] - FE - action buttons on match card (add prediction, add result)
