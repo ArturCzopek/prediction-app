@@ -123,14 +123,13 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [ ] - BE - gradle build task for building front-end and copying files to jar + tests if it works ofc
 - [ ] - BE - connection to mysql based on envs
 - [ ] - BE - logging configuration
-- [ ] - FE - nice loader :)
-- [ ] - FE - front-end integration with security
 - [ ] - FE - action buttons on match card (add prediction, add result)
 - [ ] - FE - adding match result (only admin user)
 - [ ] - FE - adding new match (only admin user)
 - [ ] - FE - adding user type/prediction
 - [ ] - FE - case handling on match card (add type only if match has not started yet)
 - [ ] - FE - whole ranking table
+- [ ] - FE - not found page
 - [ ] - D - installation instruction
 
 ## To do - 1.1
@@ -160,6 +159,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - BE - type functionality, adding type by user
 - [x] - BE - provided sample data
 - [x] - FE - beautiful match card with match time, result, user points etc
+- [x] - FE - front-end integration with security
+- [x] - FE - nice loader :)
 
 
 ## License

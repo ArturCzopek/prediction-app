@@ -1,12 +1,11 @@
 import {Component} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Component({
   selector: 'sc-not-found',
   template: `
-    <p>Not found</p>
-`
+    <h1>Ooops! Not Found!</h1>
+  `
 })
 export class PageNotFoundComponent {
 

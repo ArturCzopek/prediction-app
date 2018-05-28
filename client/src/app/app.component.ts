@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Component({
@@ -7,7 +6,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   template: `
     <sc-header></sc-header>
     <router-outlet></router-outlet>
-`
+  `
 })
 export class AppComponent {
 }

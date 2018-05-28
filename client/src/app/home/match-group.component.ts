@@ -4,15 +4,21 @@ import {MatchWithUserType} from "./model";
 
 @Component({
   selector: 'sc-match-group',
+  styles: [`
+    .ui.grid {
+      margin-top: 30px;
+    }
+  `],
   template: `
-    <div class="ui container">
-        <h2>{{label}}</h2>
-        <sc-match-card 
-            *ngFor="let matchWithType of matchGroup"
-            [matchWithType]="matchWithType"
+    <div class="ui grid">
+      <div class="sixteen wide column"><h2>{{label}}</h2></div>
+      <div *ngFor="let matchWithType of matchGroup" class="eight wide column">
+        <sc-match-card
+          [matchWithType]="matchWithType"
         ></sc-match-card>
+      </div>
     </div>
-`
+  `
 })
 export class MatchGroupComponent {
 

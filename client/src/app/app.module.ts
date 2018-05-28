@@ -13,6 +13,7 @@ import {RankingModule} from "./ranking/ranking.module";
 import {UserService} from "./shared/user.service";
 import {MatchService} from "./shared/match.service";
 import {LoaderComponent} from "./shared/loader.component";
+import {AuthService} from "./shared/auth.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -29,14 +30,15 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    RouterModule.forRoot(routes, {useHash: true}),
     HomeModule,
+    HttpClientModule,
     RankingModule,
+    RouterModule.forRoot(routes, {useHash: true}),
   ],
   providers: [
-    UserService,
-    MatchService
+    AuthService,
+    MatchService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

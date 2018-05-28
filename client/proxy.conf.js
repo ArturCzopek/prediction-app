@@ -4,6 +4,7 @@ const PROXY_CONFIG = [
       "/api/matches",
       "/api/results",
       "/api/types",
+      "/api/user",
     ],
     target: "http://localhost:8080",
     secure: false

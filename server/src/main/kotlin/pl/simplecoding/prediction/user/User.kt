@@ -32,7 +32,6 @@ data class User(
         val role: UserRole = UserRole.REGULAR,
 
         @NotEmpty
-        @JsonIgnore
         @Column(name = "USR_FIRST_NAME", length = 50)
         val firstName: String,
 

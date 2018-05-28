@@ -17,5 +17,5 @@ export interface Type {
   goals1: number,
   goals2: number
   calculated: boolean,
-
+  pointsForType?: number
 }

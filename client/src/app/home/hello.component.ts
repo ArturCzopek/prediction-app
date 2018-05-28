@@ -1,14 +1,27 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
+import {AuthService} from "../shared/auth.service";
 
 
 @Component({
   selector: 'sc-hello',
+  styles: [`
+    .ui.container {
+      margin-bottom: 20px;
+      margin-top: 40px;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+  `],
   template: `
     <div class="ui container">
-        <p>Hello, YOUR_NAME, let's have some fun!</p>
+      <h1>Hello, {{authService.getUser()?.firstName || ''}}! Let's have some fun!</h1>
     </div>
-`
+  `
 })
 export class HelloComponent {
 
+  constructor(public authService: AuthService) {
+  }
 }

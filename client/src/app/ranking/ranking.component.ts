@@ -12,7 +12,7 @@ import {Component} from '@angular/core';
   template: `
     <div class="ui container">
     </div>
-`
+  `
 })
 export class RankingComponent {
 
