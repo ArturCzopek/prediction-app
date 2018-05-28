@@ -21,12 +21,13 @@ class TypeService(
         require(LocalDateTime.now() < match.time, { "You cannot send a new type when match has started" })
         require(newType.goals1 >= 0 && newType.goals2 >= 0) { "Goals amount must be greater or equal 0" }
 
-        val typeToBeSaved = existingTypeForMatch?.copy(goals1 = newType.goals1, goals2 = newType.goals2)
+        val typeToBeSaved = existingTypeForMatch?.copy(goals1 = newType.goals1, goals2 = newType.goals2, created = LocalDateTime.now())
                 ?: Type(
                         user = user,
                         match = match,
                         goals1 = newType.goals1,
-                        goals2 = newType.goals2
+                        goals2 = newType.goals2,
+                        created = LocalDateTime.now()
                 )
 
         return typeRepository.save(typeToBeSaved)

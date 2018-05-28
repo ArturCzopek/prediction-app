@@ -1,10 +1,10 @@
 package pl.simplecoding.prediction.type
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import pl.simplecoding.prediction.match.Match
-import pl.simplecoding.prediction.user.User
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
+import pl.simplecoding.prediction.match.Match
+import pl.simplecoding.prediction.user.User
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -43,5 +43,5 @@ data class Type(
 
         @CreatedDate
         @Column(name = "TP_CREATED")
-        val created: LocalDateTime? = null
+        val created: LocalDateTime
 )
