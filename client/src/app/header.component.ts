@@ -18,7 +18,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
     `
   ],
   template: `
-    <div class="ui inverted blue fixed menu">
+    <div class="ui inverted green fixed menu">
         <div class="ui container">
             <div class="menu">
                 <a class="item title"[routerLink]="['/']" >PREDICTION APP</a>

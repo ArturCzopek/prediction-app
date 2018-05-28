@@ -5,7 +5,7 @@ import {MatchWithUserType} from "./model";
 @Component({
   selector: 'sc-match-group',
   template: `
-    <div class="ui vertical segment">
+    <div class="ui container">
         <h2>{{label}}</h2>
         <sc-match-card 
             *ngFor="let matchWithType of matchGroup"
