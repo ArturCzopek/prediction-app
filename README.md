@@ -120,38 +120,40 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## To do - 1.0
 
-[ ] - BE - introducing whole WC 2018 calendar
-[ ] - FE - front-end integration with security
-[ ] - FE - action buttons on match card (add prediction, add result)
-[ ] - FE - adding match result (only admin user)
-[ ] - FE - adding user type/prediction (only admin user)
-[ ] - FE - case handling on match card (add type only if match has not started yet)
-[ ] - FE - whole ranking table
-[ ] - D - installation instruction
+- [ ] - BE - introducing whole WC 2018 calendar
+- [ ] - FE - front-end integration with security
+- [ ] - FE - action buttons on match card (add prediction, add result)
+- [ ] - FE - adding match result (only admin user)
+- [ ] - FE - adding user type/prediction (only admin user)
+- [ ] - FE - case handling on match card (add type only if match has not started yet)
+- [ ] - FE - whole ranking table
+- [ ] - D - installation instruction
 
 ## To do - 1.1
-[ ] - BE/FE - tests
-[ ] - BE - CI/CD process
-[ ] - BE/FE - fb oauth security
-[ ] - BE/FE - AWS deployment
-[ ] - I - license
+
+- [ ] - BE/FE - tests
+- [ ] - BE - CI/CD process
+- [ ] - BE/FE - fb oauth security
+- [ ] - BE/FE - AWS deployment
+- [ ] - I - license
 
 
 ## Todo - 1.2
-[ ] - FE - privacy policy etc
+
+- [ ] - FE - privacy policy etc
 
 ## In progress
-[ ] - FE - beautiful match card with match time, result, user points etc - AC
 
+- [ ] - FE - beautiful match card with match time, result, user points etc - AC
 
 ## Done
-[x] - BE - Database structure
-[x] - BE - Liquibase integration with database
-[x] - BE - security integration with waffle
-[x] - BE - match functionality, adding new, adding results
-[x] - BE - result functionality, calculating table, calculating match etc
-[x] - BE - type functionality, adding type by user
-[x] - BE - provided sample data
+- [x] - BE - Database structure
+- [x] - BE - Liquibase integration with database
+- [x] - BE - security integration with waffle
+- [x] - BE - match functionality, adding new, adding results
+- [x] - BE - result functionality, calculating table, calculating match etc
+- [x] - BE - type functionality, adding type by user
+- [x] - BE - provided sample data
 
 
 ## License
