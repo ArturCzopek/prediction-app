@@ -41,7 +41,7 @@ data class Match(
         val resultAdded: Boolean = false
 ) {
 
-
+    @get:JsonIgnore
     val fullLabel
         get() = "[$label] $team1 vs $team2"
 }

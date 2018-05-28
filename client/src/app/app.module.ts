@@ -10,6 +10,9 @@ import {HomeComponent} from "./home/home.component";
 import {HeaderComponent} from "./header.component";
 import {HomeModule} from "./home/home.module";
 import {RankingModule} from "./ranking/ranking.module";
+import {UserService} from "./shared/user.service";
+import {MatchService} from "./shared/match.service";
+import {LoaderComponent} from "./shared/loader.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -22,16 +25,19 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes, {useHash: true}),
     HomeModule,
-    RankingModule
+    RankingModule,
   ],
-  providers: [],
+  providers: [
+    UserService,
+    MatchService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

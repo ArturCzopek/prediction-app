@@ -42,6 +42,7 @@ data class Type(
         val pointsForType: Int? = null,
 
         @CreatedDate
+        @JsonIgnore
         @Column(name = "TP_CREATED")
         val created: LocalDateTime
 )

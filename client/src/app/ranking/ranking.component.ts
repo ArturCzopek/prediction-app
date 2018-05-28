@@ -3,8 +3,15 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'sc-ranking',
+  styles: [`
+    .ui.container {
+      height: 100%;
+      padding-top: 40px;
+    }
+  `],
   template: `
-    <p>ranking</p>
+    <div class="ui container">
+    </div>
 `
 })
 export class RankingComponent {
