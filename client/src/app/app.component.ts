@@ -5,12 +5,14 @@ import {environment} from "../environments/environment";
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'sc-root',
+  template: `
+    <sc-header></sc-header>
+    <button (click)="testMatchesForUserWithIdOne()">TEST!!!</button>
+    <router-outlet></router-outlet>
+`
 })
 export class AppComponent {
-  title = 'app';
 
   constructor(private http: HttpClient) {
 
