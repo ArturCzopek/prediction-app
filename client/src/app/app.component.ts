@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {tap} from "rxjs/operators";
+import {environment} from "../environments/environment";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class AppComponent {
   }
 
   testMatchesForUserWithIdOne() {
-    this.http.get('matches')
+    this.http.get(environment.matchesUrl)
       .pipe(
         tap(match => console.log(`match ${match}`))
       )

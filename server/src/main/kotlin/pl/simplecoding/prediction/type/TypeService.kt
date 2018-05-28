@@ -1,21 +1,21 @@
 package pl.simplecoding.prediction.type
 
-import pl.simplecoding.prediction.match.MatchRepository
-import pl.simplecoding.prediction.user.UserRepository
 import mu.KLogging
 import org.springframework.stereotype.Service
+import pl.simplecoding.prediction.match.MatchRepository
+import pl.simplecoding.prediction.user.UserService
 import java.time.LocalDateTime
 
 @Service
 class TypeService(
         private val typeRepository: TypeRepository,
         private val matchRepository: MatchRepository,
-        private val userRepository: UserRepository
+        private val userService: UserService
 ) {
-    fun addNewType(userId: Long, newType: NewTypeDto): Type {
-        val existingTypeForMatch = typeRepository.findByMatch_IdAndUser_id(newType.matchId, userId)
+    fun addNewType(newType: NewTypeDto, userName: String): Type {
+        val existingTypeForMatch = typeRepository.findByMatch_IdAndUser_login(newType.matchId, userName)
         val match = matchRepository.findById(newType.matchId).get()
-        val user = userRepository.findById(userId).get()
+        val user = userService.getUserByLogin(userName)!!
 
         require(!match.resultAdded, { "Results for this match has been added, you cannot add a new type" })
         require(LocalDateTime.now() < match.time, { "You cannot send a new type when match has started" })

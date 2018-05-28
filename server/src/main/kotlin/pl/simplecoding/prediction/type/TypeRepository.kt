@@ -3,7 +3,7 @@ package pl.simplecoding.prediction.type
 import org.springframework.data.repository.CrudRepository
 
 interface TypeRepository: CrudRepository<Type, Long> {
-    fun findByMatch_IdAndUser_id(matchId: Long, userId: Long): Type?
+    fun findByMatch_IdAndUser_login(matchId: Long, login:String): Type?
 
     fun findByMatch_Id(matchId: Long): List<Type>
 

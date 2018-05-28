@@ -1,5 +1,6 @@
 package pl.simplecoding.prediction.match
 
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -7,13 +8,11 @@ import org.springframework.web.bind.annotation.*
 class MatchController(private val matchService: MatchService) {
 
     @GetMapping
-    fun getAllMatches() = matchService.getAllMatchesWithUserTypes()
+    fun getAllMatches(authentication: Authentication) = matchService.getAllMatchesWithUserTypes(authentication.name)
 
-    // todo: only admin can add match
     @PostMapping("/new")
-    fun addMatch(@RequestBody newMatch: NewMatchDto) = matchService.addMatch(newMatch)
+    fun addMatch(@RequestBody newMatch: NewMatchDto, authentication: Authentication) = matchService.addMatch(newMatch, authentication.name)
 
-    // todo: only admin can add result
     @PostMapping("/result")
-    fun addMatchResult(@RequestBody matchResult: MatchResultDto) = matchService.addMatchResult(matchResult)
+    fun addMatchResult(@RequestBody matchResult: MatchResultDto, authentication: Authentication) = matchService.addMatchResult(matchResult, authentication.name)
 }

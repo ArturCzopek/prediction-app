@@ -52,6 +52,8 @@ dependencies {
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	compile("org.jetbrains.kotlin:kotlin-reflect")
 	compile('io.github.microutils:kotlin-logging:1.5.4')
+	compile('com.github.dblock.waffle:waffle-spring-security4:1.8.1')
+	compile('com.github.dblock.waffle:waffle-tomcat8:1.8.1')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
