@@ -41,6 +41,7 @@ data class Match(
         val resultAdded: Boolean = false
 ) {
 
+
     val fullLabel
         get() = "[$label] $team1 vs $team2"
 }

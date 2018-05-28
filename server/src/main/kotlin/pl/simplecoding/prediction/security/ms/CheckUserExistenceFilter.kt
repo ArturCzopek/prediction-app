@@ -17,6 +17,6 @@ class CheckUserExistenceFilter(private val userService: UserService) : GenericFi
             }
         }
 
-        chain?.doFilter(req, res)
+        chain.doFilter(req, res)
     }
 }

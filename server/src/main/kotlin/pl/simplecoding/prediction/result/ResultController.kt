@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/results")
+@RequestMapping("/api/results")
 class ResultController(private val resultService: ResultService) {
 
     @GetMapping("/all")

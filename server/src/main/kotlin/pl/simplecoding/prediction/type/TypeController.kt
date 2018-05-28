@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/types")
+@RequestMapping("/api/types")
 class TypeController(private val typeService: TypeService) {
 
     @PostMapping("/new")

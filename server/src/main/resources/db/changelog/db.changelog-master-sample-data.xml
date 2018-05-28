@@ -12,6 +12,7 @@
                   tableName="USERS"
                   separator=";">
             <column name="USR_LOGIN" type="STRING"/>
+            <column name="USR_EMAIL" type="STRING"/>
             <column name="USR_ROLE" type="STRING"/>
             <column name="USR_FIRST_NAME" type="STRING"/>
             <column name="USR_LAST_NAME" type="STRING"/>

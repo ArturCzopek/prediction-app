@@ -4,7 +4,7 @@ import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/matches")
+@RequestMapping("/api/matches")
 class MatchController(private val matchService: MatchService) {
 
     @GetMapping

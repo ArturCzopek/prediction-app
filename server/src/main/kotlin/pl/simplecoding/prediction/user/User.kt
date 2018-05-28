@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 import javax.persistence.*
+import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
 @Entity
@@ -20,6 +21,11 @@ data class User(
         @NotEmpty
         @Column(name = "USR_LOGIN", length = 50)
         val login: String,
+
+        @NotEmpty
+        @Email
+        @Column(name = "USR_EMAIL", length = 100)
+        val email: String,
 
         @Column(name = "USR_ROLE", length = 20)
         @Enumerated(EnumType.STRING)

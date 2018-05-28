@@ -4,10 +4,9 @@
 
 export const environment = {
   production: false,
-  matchesUrl: 'matches',
-  resultsUrl: 'results',
-  typesUrl: 'types',
-  usersUrl: 'users'
+  matchesUrl: 'api/matches',
+  resultsUrl: 'api/results',
+  typesUrl: 'api/types',
 };
 
 /*

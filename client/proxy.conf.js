@@ -1,10 +1,9 @@
 const PROXY_CONFIG = [
   {
     context: [
-      "/matches",
-      "/results",
-      "/types",
-      "/users"
+      "/api/matches",
+      "/api/results",
+      "/api/types",
     ],
     target: "http://localhost:8080",
     secure: false

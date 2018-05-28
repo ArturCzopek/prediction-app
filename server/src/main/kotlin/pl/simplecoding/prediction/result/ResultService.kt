@@ -1,11 +1,11 @@
 package pl.simplecoding.prediction.result
 
+import mu.KLogging
+import org.springframework.stereotype.Service
 import pl.simplecoding.prediction.match.MatchRepository
 import pl.simplecoding.prediction.type.Type
 import pl.simplecoding.prediction.type.TypeRepository
 import pl.simplecoding.prediction.user.UserRepository
-import mu.KLogging
-import org.springframework.stereotype.Service
 
 const val exactResultPoints = 3
 const val goodWinnerPoints = 1
@@ -34,7 +34,7 @@ class ResultService(
                 AllResultsForUser(
                         fullUserName = it.fullName,
                         place = 0,
-                        resultsForMatches = getAllResultsForUser(it.id!!)
+                        resultsForMatches = getAllResultsForUser(it.login)
 
                 )
             }
@@ -54,11 +54,9 @@ class ResultService(
         else -> noPoints
     }
 
-    private fun getAllResultsForUser(id: Long) = typeRepository.findByUser_Id(id)
-            .sortedBy { it.match.id }
-            .filter { it.pointsForType != null }
-            .map { ResultForMatch(it.match.fullLabel, it.pointsForType) }
+    private fun getAllResultsForUser(login: String) = matchRepository.findAll()
+            .sortedBy { it.id }
+            .mapIndexed { id, match -> ResultForMatch(match.fullLabel, typeRepository.findByMatch_IdAndUser_login(id.toLong(), login)?.pointsForType) }
 
     companion object : KLogging()
-
 }
