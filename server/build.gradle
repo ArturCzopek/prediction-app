@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 buildscript {
     ext {
         kotlinVersion = '1.2.41'
@@ -53,6 +55,26 @@ kotlinter {
     reporters = ['checkstyle', 'plain']
 }
 
+task buildFrontDev(type: Exec) {
+    workingDir '../client'
+    commandLine 'ng', 'build', '--base-href', 'http://localhost:8080', '--prod'
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
+    } else {
+        commandLine 'cp', '-a', '/dist/prediction-app/', '../server/src/main/resources/static'
+    }
+}
+
+task buildFrontProdMs(type: Exec) {
+    workingDir '../client'
+    commandLine 'ng', 'build', '--base-href', "${System.getenv('MS_PRED_APP_URL') ?: 'http://localhost'}:${System.getenv('MS_PRED_APP_PORT') ?: '8080'}", '--prod'
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
+    } else {
+        commandLine 'cp', '-a', '/dist/prediction-app/', '../server/src/main/resources/static'
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -64,11 +86,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile('org.liquibase:liquibase-core')
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compile("org.jetbrains.kotlin:kotlin-reflect")
+    compile('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
+    compile('org.jetbrains.kotlin:kotlin-reflect')
     compile('io.github.microutils:kotlin-logging:1.5.4')
     compile('com.github.dblock.waffle:waffle-spring-security4:1.8.1')
     compile('com.github.dblock.waffle:waffle-tomcat8:1.8.1')
+    compile('mysql:mysql-connector-java:5.1.38')
     ktlint('com.github.shyiko:ktlint:0.14.0')
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')

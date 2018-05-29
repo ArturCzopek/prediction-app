@@ -120,13 +120,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## To do - 1.0
 
-- [ ] - BE - connection to mysql based on envs
 - [ ] - BE - logging configuration
 - [ ] - FE - action buttons on match card (add prediction, add result)
 - [ ] - FE - adding match result (only admin user)
 - [ ] - FE - adding new match (only admin user)
 - [ ] - FE - adding user type/prediction
-- [ ] - FE - case handling on match card (add type only if match has not started yet)
 - [ ] - FE - whole ranking table
 - [ ] - FE - not found page
 - [ ] - D - installation instruction
@@ -146,8 +144,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## In progress
 
-- [ ] - BE - introducing whole WC 2018 calendar - AC
-
 
 ## Done
 - [x] - BE - Database structure
@@ -161,6 +157,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - FE - front-end integration with security
 - [x] - FE - nice loader :)
 - [x] - BE - gradle build task for building front-end and copying files to jar + tests if it works ofc
+- [x] - BE - introducing whole WC 2018 calendar
+- [x] - BE - connection to mysql based on envs
+- [x] - FE - case handling on match card (add type only if match has not started yet)
 
 
 ## License

@@ -14,15 +14,15 @@ import {Component} from '@angular/core';
     }
 
     a.item.title:hover {
-      background: #2185D0 !important;
+      background-color: transparent !important;
+      color: #ffffff !important;
     }
-  `
-  ],
+  `],
   template: `
     <div class="ui inverted green fixed menu">
       <div class="ui container">
         <div class="menu">
-          <a class="item title" [routerLink]="['/']">PREDICTION APP</a>
+          <a class="item title" [routerLink]="['/']">PREDICTION APP 1x2</a>
         </div>
         <div class="right menu">
           <a class="item" [routerLink]="['/home']" routerLinkActive="active">Home</a>

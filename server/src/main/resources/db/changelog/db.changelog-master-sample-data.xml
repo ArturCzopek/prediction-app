@@ -40,6 +40,7 @@
             <column name="TP_MATCH_ID" type="NUMERIC"/>
             <column name="TP_GOALS_1" type="NUMERIC"/>
             <column name="TP_GOALS_2" type="NUMERIC"/>
+            <column name="TP_POINTS" type="NUMERIC"/>
             <column name="TP_CREATED" type="DATETIME"/>
         </loadData>
     </changeSet>

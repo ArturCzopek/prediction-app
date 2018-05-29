@@ -14,6 +14,7 @@ import {UserService} from "./shared/user.service";
 import {MatchService} from "./shared/match.service";
 import {LoaderComponent} from "./shared/loader.component";
 import {AuthService} from "./shared/auth.service";
+import {DateService} from "./shared/date.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -37,6 +38,7 @@ const routes: Routes = [
   ],
   providers: [
     AuthService,
+    DateService,
     MatchService,
     UserService
   ],

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatchWithUserType} from "./model";
 import {AuthService} from "../shared/auth.service";
+import {DateService} from "../shared/date.service";
 
 
 @Component({
@@ -13,6 +14,18 @@ import {AuthService} from "../shared/auth.service";
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+    }
+
+    .match-card--red {
+      background-color: #ff6f5f;
+    }
+
+    .match-card--yellow {
+      background-color: #fffe7b;
+    }
+
+    .match-card--green {
+      background-color: #baffa1;
     }
 
     .match-card__content {
@@ -96,7 +109,8 @@ import {AuthService} from "../shared/auth.service";
     }
 
     .match-card__actions__button:hover {
-      background-color: #f8f8f8;
+      background-color: RGBA(0, 0, 0, 0.05);
+      filter: hue-rotate(90deg);
     }
 
     .match-card__actions__button + .match-card__actions__button {
@@ -104,7 +118,7 @@ import {AuthService} from "../shared/auth.service";
     }
   `],
   template: `
-    <div class="match-card">
+    <div class="match-card" [ngClass]="classForUserType">
       <div class="match-card__content">
         <div class="match-card__content__title">
           <div class="match-card__content__title__team1">{{matchWithType.match.team1}}</div>
@@ -113,7 +127,7 @@ import {AuthService} from "../shared/auth.service";
           </div>
           <div class="match-card__content__title__team2">{{matchWithType.match.team2}}</div>
         </div>
-        <div class="match-card__content__subtitle">{{matchWithType.match.time}}</div>
+        <div class="match-card__content__subtitle">{{formattedDate}}</div>
         <div class="match-card__content__type">Your type: {{getFormattedType()}}</div>
         <div class="match-card__content__points">Points for type: {{matchWithType?.type?.pointsForType || "-"}}</div>
       </div>
@@ -137,14 +151,32 @@ export class MatchCardComponent implements OnInit {
   public isActionAvailable = false;
   public isAdmin = false;
   public canPredict = false;
+  public formattedDate = '';
+  public classForUserType = '';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private dateService: DateService) {
   }
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isLoggedInAsAdmin();
-    this.canPredict = Math.random() >= 0.5; // todo implement
+    this.canPredict = this.dateService.isDateValidToPredict(this.matchWithType.match.time);
     this.isActionAvailable = this.isAdmin || this.canPredict;
+    this.formattedDate = this.dateService.convertDateFromDbToString(this.matchWithType.match.time);
+    this.classForUserType = this.getClassForUserType();
+  }
+
+  private getClassForUserType(): string {
+    if ((!this.matchWithType.type || !this.matchWithType.type.pointsForType) && this.canPredict) {
+      return '';
+    } else if (((!this.matchWithType.type || !this.matchWithType.type.pointsForType) && !this.canPredict) || this.matchWithType.type.pointsForType === 0) {
+      return 'match-card--red';
+    } else if (this.matchWithType.type.pointsForType === 1) {
+      return 'match-card--yellow';
+    } else if (this.matchWithType.type.pointsForType === 3) {
+      return 'match-card--green';
+    } else {
+      return '';
+    }
   }
 
   public getFormattedType() {

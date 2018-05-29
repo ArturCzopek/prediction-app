@@ -1,14 +1,63 @@
 MTC_LABEL;MTC_TIME;MTC_TEAM_1;MTC_TEAM_2
-Grupa A;'2018-05-14T17:00:00.000';Rosja;Arabia Saudyjska
-Grupa A;'2018-06-15T14:00:00.000';Egipt;Urugwaj
-Grupa A;'2018-06-19T20:00:00.000';Rosja;Egipt
-Grupa A;'2018-06-20T17:00:00.000';Urugwaj;Arabia Saudyjska
-Grupa A;'2018-06-25T16:00:00.000';Urugwaj;Rosja
-Grupa A;'2018-06-25T16:00:00.000';Arabia Saudyjska;Egipt
+Group A;'2018-06-14T17:00:00.000';Russia;Saudi Arabia
 
-Grupa B;'2018-06-15T17:00:00.000';Maroko;Iran
-Grupa B;'2018-06-15T20:00:00.000';Portugalia;Hiszpania
-Grupa B;'2018-06-20T14:00:00.000';Portugalia;Maroko
-Grupa B;'2018-06-20T20:00:00.000';Iran;Hiszpania
-Grupa B;'2018-06-25T20:00:00.000';Hiszpania;Maroko
-Grupa B;'2018-06-25T20:00:00.000';Iran;Portugalia
+Group A;'2018-06-15T14:00:00.000';Egypt;Uruguay
+Group B;'2018-06-15T17:00:00.000';Morocco;IR Iran
+Group B;'2018-06-15T20:00:00.000';Portugal;Spain
+
+Group C;'2018-06-16T12:00:00.000';France;Australia
+Group D;'2018-06-16T15:00:00.000';Argentina;Iceland
+Group C;'2018-06-16T18:00:00.000';Peru;Denmark
+Group D;'2018-06-16T21:00:00.000';Croatia;Nigeria
+
+Group E;'2018-06-17T14:00:00.000';Costa Rica;Serbia
+Group F;'2018-06-17T17:00:00.000';Germany;Mexico
+Group E;'2018-06-17T20:00:00.000';Brazil;Switzerland
+
+Group F;'2018-06-18T14:00:00.000';Sweden;South Korea
+Group G;'2018-06-18T17:00:00.000';Belgium;Panama
+Group G;'2018-06-18T20:00:00.000';Tunisia;England
+
+Group H;'2018-06-19T14:00:00.000';Poland;Senegal
+Group H;'2018-06-19T17:00:00.000';Colombia;Japan
+Group A;'2018-06-19T20:00:00.000';Russia;Egypt
+
+Group B;'2018-06-20T14:00:00.000';Portugal;Morocco
+Group A;'2018-06-20T17:00:00.000';Uruguay;Saudi Arabia
+Group B;'2018-06-20T20:00:00.000';IR Iran;Spain
+
+Group C;'2018-06-21T14:00:00.000';France;Peru
+Group C;'2018-06-21T17:00:00.000';Denmark;Australia
+Group D;'2018-06-21T20:00:00.000';Argentina;Croatia
+
+Group E;'2018-06-22T14:00:00.000';Brazil;Costa Rica
+Group D;'2018-06-22T17:00:00.000';Nigeria;Iceland
+Group E;'2018-06-22T20:00:00.000';Serbia;Switzerland
+
+Group G;'2018-06-23T14:00:00.000';Belgium;Tunisia
+Group F;'2018-06-23T17:00:00.000';Germany;Sweden
+Group F;'2018-06-23T20:00:00.000';South Korea;Mexico
+
+Group G;'2018-06-24T14:00:00.000';England;Panama
+Group H;'2018-06-24T17:00:00.000';Japan;Senegal
+Group H;'2018-06-24T20:00:00.000';Poland;Colombia
+
+Group A;'2018-06-25T16:00:00.000';Uruguay;Russia
+Group A;'2018-06-25T16:00:00.000';Saudi Arabia;Egypt
+Group B;'2018-06-25T20:00:00.000';Spain;Morocco
+Group B;'2018-06-25T20:00:00.000';IR Iran;Portugal
+
+Group C;'2018-06-26T16:00:00.000';Denmark;France
+Group C;'2018-06-26T16:00:00.000';Australia;Peru
+Group D;'2018-06-26T20:00:00.000';Nigeria;Argentina
+Group D;'2018-06-26T20:00:00.000';Iceland;Croatia
+
+Group F;'2018-06-27T16:00:00.000';South Korea;Germany
+Group F;'2018-06-27T16:00:00.000';Mexico;Sweden
+Group E;'2018-06-27T20:00:00.000';Serbia;Brazil
+Group E;'2018-06-27T20:00:00.000';Switzerland;Costa Rica
+
+Group H;'2018-06-28T16:00:00.000';Japan;Poland
+Group H;'2018-06-28T16:00:00.000';Senegal;Colombia
+Group G;'2018-06-28T20:00:00.000';England;Belgium
+Group G;'2018-06-28T20:00:00.000';Panama;Tunisia
