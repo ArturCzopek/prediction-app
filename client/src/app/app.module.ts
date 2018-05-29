@@ -16,6 +16,7 @@ import {LoaderComponent} from "./shared/loader.component";
 import {AuthService} from "./shared/auth.service";
 import {DateService} from "./shared/date.service";
 import {StreamService} from "./shared/stream.service";
+import {TypeService} from "./shared/type.service";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -42,6 +43,7 @@ const routes: Routes = [
     DateService,
     MatchService,
     StreamService,
+    TypeService,
     UserService
   ],
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MatchWithUserType} from "./model";
 import {MatchService} from "../shared/match.service";
 import {AuthService} from "../shared/auth.service";
 import {Subscription} from "rxjs/internal/Subscription";
 import {StreamService} from "../shared/stream.service";
+import {MatchWithUserType} from "../shared/model";
 
 
 @Component({
@@ -27,6 +27,7 @@ import {StreamService} from "../shared/stream.service";
       </ng-template>
       <sc-modal-add-match></sc-modal-add-match>
       <sc-modal-add-result></sc-modal-add-result>
+      <sc-modal-add-type></sc-modal-add-type>
     </div>
   `
 })

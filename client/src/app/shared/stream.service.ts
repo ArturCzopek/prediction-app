@@ -1,13 +1,13 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs/internal/Subject";
-import {Match} from "../home/model";
+import {Match, MatchWithUserType} from "./model";
 
 
 @Injectable()
 export class StreamService {
   readonly addMatchModal = new Subject<any>();
   readonly addResultModal = new Subject<Match>();
-  readonly addTypeModal = new Subject<Match>();
+  readonly addTypeModal = new Subject<MatchWithUserType>();
   readonly refreshHomePage = new Subject<any>();
 
   public callAddMatchModal() {
@@ -18,8 +18,8 @@ export class StreamService {
     this.addResultModal.next(match);
   }
 
-  public callAddTypeModal(match: Match) {
-    this.addTypeModal.next(match);
+  public callAddTypeModal(matchWithUserType: MatchWithUserType) {
+    this.addTypeModal.next(matchWithUserType);
   }
 
   public callRefreshHomePage() {

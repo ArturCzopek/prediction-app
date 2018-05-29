@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MatchWithUserType} from "./model";
 import {AuthService} from "../shared/auth.service";
 import {DateService} from "../shared/date.service";
 import {StreamService} from "../shared/stream.service";
+import {MatchWithUserType} from "../shared/model";
 
 
 @Component({
@@ -132,7 +132,7 @@ import {StreamService} from "../shared/stream.service";
           <i class="plus circle icon"></i>
           <p>Add match result</p>
         </div>
-        <div class="match-card__actions__button" *ngIf="canPredict">
+        <div class="match-card__actions__button" *ngIf="canPredict" (click)="openAddTypeModal()">
           <i class="money bill alternate outline icon"></i>
           <p>Predict!</p>
         </div>
@@ -176,7 +176,11 @@ export class MatchCardComponent implements OnInit {
     this.resultAdded = Number.isInteger(match.goals1) && Number.isInteger(match.goals2);
     this.goals1 = (match && Number.isInteger(match.goals1)) ? match.goals1 + '' : '-';
     this.goals2 = (match && Number.isInteger(match.goals2)) ? match.goals2 + '' : '-';
-    this.pointsForType = (type && Number.isInteger(type.pointsForType)) ? type.pointsForType + '' : '-';
+    if ((type && Number.isInteger(type.pointsForType)) || this.resultAdded) {
+      this.pointsForType = type ? (type.pointsForType || 0) + '' : '0';
+    } else {
+      this.pointsForType = '-';
+    }
 
 
     this.classForUserType = this.getClassForUserType();
@@ -203,6 +207,10 @@ export class MatchCardComponent implements OnInit {
 
   public openAddResultModal() {
     this.streamService.callAddResultModal(this.matchWithType.match);
+  }
+
+  public openAddTypeModal() {
+    this.streamService.callAddTypeModal(this.matchWithType);
   }
 
   private arePointsForType(): boolean {

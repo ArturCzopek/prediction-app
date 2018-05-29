@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {MatchWithUserType} from "./model";
+import {MatchWithUserType} from "../shared/model";
 
 
 @Component({

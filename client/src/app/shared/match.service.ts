@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs/internal/Observable";
-import {Match, MatchResult, MatchWithUserType} from "../home/model";
 import {environment} from "../../environments/environment";
-import {NewMatch} from "./model";
+import {Match, MatchResult, MatchWithUserType, NewMatch} from "./model";
 
 
 @Injectable()

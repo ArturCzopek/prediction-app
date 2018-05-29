@@ -120,10 +120,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## To do - 1.0
 
 - [ ] - BE - logging configuration
-- [ ] - FE - adding user type/prediction
 - [ ] - FE - whole ranking table
 - [ ] - FE - not found page
-- [ ] - FE - optimalization - ngfor
+- [ ] - FE - optimise ngfor
 - [ ] - D - installation instruction
 
 ## To do - 1.1
@@ -156,6 +155,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - FE - case handling on match card (add type only if match has not started yet)
 - [x] - FE - adding new match (only admin user)
 - [x] - FE - adding match result (only admin user)
+- [x] - FE - adding user type/prediction
 
 
 ## License
