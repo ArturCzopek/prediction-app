@@ -41,7 +41,6 @@ class ResultService(
             .sortedByDescending { it.summaryPoints }
             .mapIndexed { index, allResultsForUser -> allResultsForUser.copy(place = index + 1) }
 
-
     fun getResultsForMatch(matchId: Long) = typeRepository.findByMatch_Id(matchId)
             .map { UserResultForMatch(it.user.fullName, 0, ResultForMatch(it.match.fullLabel, it.pointsForType)) }
             .sortedByDescending { it.resultForMatch.pointsForMatch }

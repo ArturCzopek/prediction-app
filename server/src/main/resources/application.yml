@@ -4,3 +4,6 @@ spring:
   security:
     filter:
       order: 5
+  http:
+    encoding:
+      force: true

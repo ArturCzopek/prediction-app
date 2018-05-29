@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="db/changelog/db.changelog-master.xml"/>
+
+    <changeSet id="Sample users data" author="arturc">
+        <loadData file="db/changelog/samples/users.csv"
+                  tableName="USERS"
+                  separator=";">
+            <column name="USR_LOGIN" type="STRING"/>
+            <column name="USR_EMAIL" type="STRING"/>
+            <column name="USR_ROLE" type="STRING"/>
+            <column name="USR_FIRST_NAME" type="STRING"/>
+            <column name="USR_LAST_NAME" type="STRING"/>
+            <column name="USR_ENABLED" type="BOOLEAN"/>
+            <column name="USR_CREATED" type="DATE"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="Sample matches data" author="arturc">
+        <loadData file="db/changelog/samples/matches.csv"
+                  tableName="MATCHES"
+                  separator=";">
+            <column name="MTC_LABEL" type="STRING"/>
+            <column name="MTC_TIME" type="DATETIME"/>
+            <column name="MTC_TEAM_1" type="STRING"/>
+            <column name="MTC_TEAM_2" type="STRING"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

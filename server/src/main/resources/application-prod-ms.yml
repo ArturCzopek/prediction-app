@@ -1,0 +1,27 @@
+spring:
+  profiles: prod-ms
+  jpa:
+    hibernate:
+      ddl-auto: none
+  h2:
+    console:
+      enabled: false
+  datasource:
+    url: ${MS_PRED_DB_URL}
+    username: ${MS_PRED_DB_USR}
+    password: ${MS_PRED_DB_PASS}
+    driver-class-name: com.mysql.jdbc.Driver
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master-ms.xml
+    enabled: true
+  devtools:
+    livereload:
+      enabled: false
+    restart:
+      enabled: false
+    remote:
+      restart:
+        enabled: false
+server:
+  address: ${MS_PRED_APP_URL}
+  port: ${MS_PRED_APP_PORT}

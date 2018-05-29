@@ -23,13 +23,12 @@ class MatchService(
             .sortedBy { it.match.time }
             .groupBy { it.match.label }
 
-
     fun addMatch(newMatchDto: NewMatchDto, login: String) = with(newMatchDto) {
         require(LocalDateTime.now() < this.time) { "You cannot add past matches" }
         require(this.team1 != this.team2) { "Teams names must be different" }
         require(userService.getUserByLogin(login)?.role == UserRole.ADMIN) { "Action allowed only for admin!" }
-        val (label,time, team1, team2) = this
-        require(matchRepository.findByLabelAndTeam1AndTeam2(label, team1, team2) == null) { "Match with this parameters already exist!"}
+        val (label, time, team1, team2) = this
+        require(matchRepository.findByLabelAndTeam1AndTeam2(label, team1, team2) == null) { "Match with this parameters already exist!" }
 
         matchRepository.save(Match(
                 id = null,
@@ -39,7 +38,6 @@ class MatchService(
                 team2 = team2
         ))
     }.also { logger.info { "Added new match: ${it.fullLabel}" } }
-
 
     fun addMatchResult(matchResultDto: MatchResultDto, login: String): Match {
         val match = matchRepository.findById(matchResultDto.matchId).get()

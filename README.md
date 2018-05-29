@@ -120,7 +120,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## To do - 1.0
 
-- [ ] - BE - gradle build task for building front-end and copying files to jar + tests if it works ofc
 - [ ] - BE - connection to mysql based on envs
 - [ ] - BE - logging configuration
 - [ ] - FE - action buttons on match card (add prediction, add result)
@@ -161,6 +160,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - FE - beautiful match card with match time, result, user points etc
 - [x] - FE - front-end integration with security
 - [x] - FE - nice loader :)
+- [x] - BE - gradle build task for building front-end and copying files to jar + tests if it works ofc
 
 
 ## License
