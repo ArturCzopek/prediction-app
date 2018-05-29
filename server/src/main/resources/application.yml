@@ -7,3 +7,12 @@ spring:
   http:
     encoding:
       force: true
+
+logging:
+  level:
+    org:
+      springframework.web: INFO
+      hibernate: INFO
+    pl:
+      simplecoding: INFO
+  file: ${MS_PRED_LOG_PATH:.}/logs/prediction-app.log

@@ -119,7 +119,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## To do - 1.0
 
-- [ ] - BE - logging configuration
 - [ ] - FE - whole ranking table
 - [ ] - FE - not found page
 - [ ] - FE - optimise ngfor
@@ -156,6 +155,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - FE - adding new match (only admin user)
 - [x] - FE - adding match result (only admin user)
 - [x] - FE - adding user type/prediction
+- [x] - BE - logging configuration
 
 
 ## License
