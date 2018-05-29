@@ -72,11 +72,6 @@ import {DateService} from "../shared/date.service";
       font-weight: 400;
     }
 
-    .match-card__separator {
-      color: lightgray;
-      width: 100%;
-    }
-
     .match-card__content__points {
       font-weight: 600;
     }
@@ -88,6 +83,11 @@ import {DateService} from "../shared/date.service";
       height: 40px;
       justify-content: center;
       width: 100%;
+    }
+
+    .match-card__actions--no-actions {
+      color: gray;
+      cursor: not-allowed;
     }
 
     .match-card__actions__button {
@@ -112,10 +112,6 @@ import {DateService} from "../shared/date.service";
       background-color: RGBA(0, 0, 0, 0.05);
       filter: hue-rotate(90deg);
     }
-
-    .match-card__actions__button + .match-card__actions__button {
-      border-left: 1px solid lightgray;
-    }
   `],
   template: `
     <div class="match-card" [ngClass]="classForUserType">
@@ -131,9 +127,8 @@ import {DateService} from "../shared/date.service";
         <div class="match-card__content__type">Your type: {{getFormattedType()}}</div>
         <div class="match-card__content__points">Points for type: {{matchWithType?.type?.pointsForType || "-"}}</div>
       </div>
-      <div *ngIf="isActionAvailable" class="match-card__separator"></div>
-      <div *ngIf="isActionAvailable" class="match-card__actions">
-        <div class="match-card__actions__button" *ngIf="isAdmin">
+      <div *ngIf="isActionAvailable; else noAction" class="match-card__actions">
+        <div class="match-card__actions__button" *ngIf="canAddResult">
           <i class="plus circle icon"></i>
           <p>Add match result</p>
         </div>
@@ -142,6 +137,11 @@ import {DateService} from "../shared/date.service";
           <p>Predict!</p>
         </div>
       </div>
+      <ng-template #noAction>
+        <div class="match-card__actions match-card__actions--no-actions">
+          <p>No action for this match</p>
+        </div>
+      </ng-template>
     </div>
   `
 })
@@ -151,24 +151,29 @@ export class MatchCardComponent implements OnInit {
   public isActionAvailable = false;
   public isAdmin = false;
   public canPredict = false;
+  public canAddResult = false;
   public formattedDate = '';
   public classForUserType = '';
+  private resultAdded = false;
 
   constructor(private authService: AuthService, private dateService: DateService) {
   }
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isLoggedInAsAdmin();
-    this.canPredict = this.dateService.isDateValidToPredict(this.matchWithType.match.time);
-    this.isActionAvailable = this.isAdmin || this.canPredict;
+    this.canPredict = this.dateService.isDateValidToPredict(this.matchWithType.match.time) && !this.arePointsForType();
+    this.canAddResult = this.isAdmin && this.dateService.isDateValidToAddResult(this.matchWithType.match.time);
+    this.isActionAvailable = this.canAddResult || this.canPredict;
     this.formattedDate = this.dateService.convertDateFromDbToString(this.matchWithType.match.time);
+    this.resultAdded = Number.isInteger(this.matchWithType.match.goals1) && Number.isInteger(this.matchWithType.match.goals2);
+
     this.classForUserType = this.getClassForUserType();
   }
 
   private getClassForUserType(): string {
-    if ((!this.matchWithType.type || !this.matchWithType.type.pointsForType) && this.canPredict) {
+    if ((!this.arePointsForType() && this.canPredict) || !this.resultAdded) {
       return '';
-    } else if (((!this.matchWithType.type || !this.matchWithType.type.pointsForType) && !this.canPredict) || this.matchWithType.type.pointsForType === 0) {
+    } else if ((!this.arePointsForType() && !this.canPredict && this.resultAdded) || this.matchWithType.type.pointsForType === 0) {
       return 'match-card--red';
     } else if (this.matchWithType.type.pointsForType === 1) {
       return 'match-card--yellow';
@@ -177,6 +182,14 @@ export class MatchCardComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  private arePointsForType(): boolean {
+    if (!this.matchWithType.type) {
+      return false;
+    }
+
+    return Number.isInteger(this.matchWithType.type.pointsForType);
   }
 
   public getFormattedType() {

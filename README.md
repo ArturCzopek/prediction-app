@@ -116,14 +116,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Artur Czopek**  - *developer* - [SimpleCoding blog](https://simplecoding.pl)
-* **Karol Klimończyk** - *developer* - [Bugs and Coding blog](http://bugsandcoding.com)
 
 ## To do - 1.0
 
 - [ ] - BE - logging configuration
-- [ ] - FE - action buttons on match card (add prediction, add result)
 - [ ] - FE - adding match result (only admin user)
-- [ ] - FE - adding new match (only admin user)
 - [ ] - FE - adding user type/prediction
 - [ ] - FE - whole ranking table
 - [ ] - FE - not found page
@@ -137,12 +134,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [ ] - BE/FE - AWS deployment
 - [ ] - I - license
 
-
 ## Todo - 1.2
 
 - [ ] - FE - privacy policy etc
-
-## In progress
 
 
 ## Done
@@ -160,6 +154,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - BE - introducing whole WC 2018 calendar
 - [x] - BE - connection to mysql based on envs
 - [x] - FE - case handling on match card (add type only if match has not started yet)
+- [x] - FE - adding new match (only admin user)
 
 
 ## License

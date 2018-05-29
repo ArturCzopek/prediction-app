@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatchWithUserType} from "./model";
 import {MatchService} from "../shared/match.service";
 import {AuthService} from "../shared/auth.service";
+import {Subscription} from "rxjs/internal/Subscription";
+import {StreamService} from "../shared/stream.service";
 
 
 @Component({
@@ -26,15 +28,30 @@ import {AuthService} from "../shared/auth.service";
     </div>
   `
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   public objectKeys = Object.keys;
   public matchesWithUserType: Map<String, Array<MatchWithUserType>> = null;
+  private refreshPage$: Subscription;
 
-  constructor(private matchService: MatchService, public authService: AuthService) {
-  }
+  constructor(
+    public authService: AuthService,
+    private matchService: MatchService,
+    private streamService: StreamService
+  ) {}
 
   ngOnInit(): void {
+    this.refreshPage$ = this.streamService.refreshHomePage.subscribe(refresh => this.loadMatches())
+    this.loadMatches();
+  }
+
+  ngOnDestroy(): void {
+    if (this.refreshPage$) {
+      this.refreshPage$.unsubscribe();
+    }
+  }
+
+  private loadMatches() {
     this.matchService.getAllMatchesWithUserTypes()
       .subscribe(
         matches => {

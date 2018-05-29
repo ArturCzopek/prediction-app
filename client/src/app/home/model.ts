@@ -6,6 +6,7 @@ export interface MatchWithUserType {
 export interface Match {
   id: number,
   time: string,
+  label: string,
   team1: string,
   team2: string,
   resultAdded: boolean

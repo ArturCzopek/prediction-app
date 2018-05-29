@@ -16,7 +16,6 @@ data class Match(
         val id: Long?,
 
         @NotEmpty
-        @JsonIgnore
         @Column(name = "MTC_LABEL", length = 200)
         val label: String,
 

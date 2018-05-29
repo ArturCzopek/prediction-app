@@ -1,4 +1,5 @@
 import {Component,} from '@angular/core';
+import {StreamService} from "../shared/stream.service";
 
 
 @Component({
@@ -17,14 +18,15 @@ import {Component,} from '@angular/core';
   template: `
     <div class="ui container">
       <a class="green" (click)="showAddMatchModal()">Add new match</a>
+      <sc-modal-add-match></sc-modal-add-match>
     </div>
   `
 })
 export class AddMatchComponent {
 
-  // todo
-  public showAddMatchModal() {
-    console.log('show modal');
-  }
+  constructor(private modalService: StreamService) {}
 
+  public showAddMatchModal() {
+    this.modalService.callAddMatchModal();
+  }
 }
