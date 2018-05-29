@@ -18,7 +18,6 @@ import {StreamService} from "../shared/stream.service";
   template: `
     <div class="ui container">
       <a class="green" (click)="showAddMatchModal()">Add new match</a>
-      <sc-modal-add-match></sc-modal-add-match>
     </div>
   `
 })

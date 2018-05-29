@@ -10,9 +10,6 @@ declare var $: any;
 
 @Component({
   selector: 'sc-modal-add-match',
-  styles: [`
-
-  `],
   template: `
     <div id="add-match-modal" class="ui small modal">
       <div class="header">Add Match</div>

@@ -9,11 +9,13 @@ import {AddMatchComponent} from "./add-match.component";
 import {HelloComponent} from "./hello.component";
 import {AddMatchModal} from "./add-match.modal";
 import {FormsModule} from "@angular/forms";
+import {AddResultModal} from "./add-result.modal";
 
 @NgModule({
   declarations: [
     AddMatchComponent,
     AddMatchModal,
+    AddResultModal,
     HelloComponent,
     HomeComponent,
     MatchGroupComponent,

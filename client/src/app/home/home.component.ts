@@ -25,6 +25,8 @@ import {StreamService} from "../shared/stream.service";
                         [matchGroup]="matchesWithUserType[label]"
         ></sc-match-group>
       </ng-template>
+      <sc-modal-add-match></sc-modal-add-match>
+      <sc-modal-add-result></sc-modal-add-result>
     </div>
   `
 })

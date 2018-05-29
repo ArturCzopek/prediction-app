@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MatchWithUserType} from "./model";
 import {AuthService} from "../shared/auth.service";
 import {DateService} from "../shared/date.service";
+import {StreamService} from "../shared/stream.service";
 
 
 @Component({
@@ -118,17 +119,16 @@ import {DateService} from "../shared/date.service";
       <div class="match-card__content">
         <div class="match-card__content__title">
           <div class="match-card__content__title__team1">{{matchWithType.match.team1}}</div>
-          <div class="match-card__content__title__result">{{matchWithType.match?.goals1 || "-"}} :
-            {{matchWithType.match?.goals2 || "-"}}
+          <div class="match-card__content__title__result">{{goals1}} : {{goals2}}
           </div>
           <div class="match-card__content__title__team2">{{matchWithType.match.team2}}</div>
         </div>
         <div class="match-card__content__subtitle">{{formattedDate}}</div>
         <div class="match-card__content__type">Your type: {{getFormattedType()}}</div>
-        <div class="match-card__content__points">Points for type: {{matchWithType?.type?.pointsForType || "-"}}</div>
+        <div class="match-card__content__points">Points for type: {{pointsForType}}</div>
       </div>
       <div *ngIf="isActionAvailable; else noAction" class="match-card__actions">
-        <div class="match-card__actions__button" *ngIf="canAddResult">
+        <div class="match-card__actions__button" *ngIf="canAddResult" (click)="openAddResultModal()">
           <i class="plus circle icon"></i>
           <p>Add match result</p>
         </div>
@@ -154,18 +154,30 @@ export class MatchCardComponent implements OnInit {
   public canAddResult = false;
   public formattedDate = '';
   public classForUserType = '';
+  public goals1 = '-';
+  public goals2 = '-';
+  public pointsForType = '-';
   private resultAdded = false;
 
-  constructor(private authService: AuthService, private dateService: DateService) {
+  constructor(
+    private authService: AuthService,
+    private dateService: DateService,
+    private streamService: StreamService
+  ) {
   }
 
   ngOnInit(): void {
+    const {match, type} = this.matchWithType;
     this.isAdmin = this.authService.isLoggedInAsAdmin();
-    this.canPredict = this.dateService.isDateValidToPredict(this.matchWithType.match.time) && !this.arePointsForType();
-    this.canAddResult = this.isAdmin && this.dateService.isDateValidToAddResult(this.matchWithType.match.time);
+    this.canPredict = this.dateService.isDateValidToPredict(match.time) && !this.arePointsForType();
+    this.canAddResult = this.isAdmin && this.dateService.isDateValidToAddResult(match.time);
     this.isActionAvailable = this.canAddResult || this.canPredict;
-    this.formattedDate = this.dateService.convertDateFromDbToString(this.matchWithType.match.time);
-    this.resultAdded = Number.isInteger(this.matchWithType.match.goals1) && Number.isInteger(this.matchWithType.match.goals2);
+    this.formattedDate = this.dateService.convertDateFromDbToString(match.time);
+    this.resultAdded = Number.isInteger(match.goals1) && Number.isInteger(match.goals2);
+    this.goals1 = (match && Number.isInteger(match.goals1)) ? match.goals1 + '' : '-';
+    this.goals2 = (match && Number.isInteger(match.goals2)) ? match.goals2 + '' : '-';
+    this.pointsForType = (type && Number.isInteger(type.pointsForType)) ? type.pointsForType + '' : '-';
+
 
     this.classForUserType = this.getClassForUserType();
   }
@@ -184,16 +196,20 @@ export class MatchCardComponent implements OnInit {
     }
   }
 
+  public getFormattedType() {
+    const {type} = this.matchWithType;
+    return type ? `${type.goals1} : ${type.goals2}` : 'Not found';
+  }
+
+  public openAddResultModal() {
+    this.streamService.callAddResultModal(this.matchWithType.match);
+  }
+
   private arePointsForType(): boolean {
     if (!this.matchWithType.type) {
       return false;
     }
 
     return Number.isInteger(this.matchWithType.type.pointsForType);
-  }
-
-  public getFormattedType() {
-    const {type} = this.matchWithType;
-    return type ? `${type.goals1} : ${type.goals2}` : 'Not found';
   }
 }

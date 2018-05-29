@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs/internal/Observable";
-import {Match, MatchWithUserType} from "../home/model";
+import {Match, MatchResult, MatchWithUserType} from "../home/model";
 import {environment} from "../../environments/environment";
 import {NewMatch} from "./model";
 
@@ -17,5 +17,9 @@ export class MatchService {
 
   public addNewMatch(newMatch: NewMatch): Observable<Match> {
     return this.http.post<Match>(`${environment.matchesUrl}/new`, newMatch);
+  }
+
+  public addResult(result: MatchResult): Observable<Match> {
+    return this.http.post<Match>(`${environment.matchesUrl}/result`, result);
   }
 }

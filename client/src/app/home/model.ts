@@ -20,3 +20,9 @@ export interface Type {
   calculated: boolean,
   pointsForType?: number
 }
+
+export interface MatchResult {
+  matchId: number,
+  goals1: number,
+  goals2: number
+}
