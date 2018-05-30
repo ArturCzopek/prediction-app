@@ -1,7 +1,9 @@
 package pl.simplecoding.prediction.result
 
 import mu.KLogging
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
+import pl.simplecoding.prediction.match.Match
 import pl.simplecoding.prediction.match.MatchRepository
 import pl.simplecoding.prediction.type.Type
 import pl.simplecoding.prediction.type.TypeRepository
@@ -29,17 +31,20 @@ class ResultService(
                 .also { logger.info { "Calculated results for match ${this.fullLabel}" } }
     }
 
-    fun getTable() = userRepository.findAll()
-            .map {
-                AllResultsForUser(
-                        fullUserName = it.fullName,
-                        place = 0,
-                        resultsForMatches = getAllResultsForUser(it.login)
+    fun getTable(): List<AllResultsForUser> {
+        val matchesToCheck = matchRepository.findAllByResultAddedTrue(Sort.by("id"))
+        return userRepository.findAll()
+                .map {
+                    AllResultsForUser(
+                            fullUserName = it.fullName,
+                            place = 0,
+                            resultsForMatches = getAllResultsForUser(it.login, matchesToCheck)
 
-                )
-            }
-            .sortedByDescending { it.summaryPoints }
-            .mapIndexed { index, allResultsForUser -> allResultsForUser.copy(place = index + 1) }
+                    )
+                }
+                .sortedByDescending { it.summaryPoints }
+                .mapIndexed { index, allResultsForUser -> allResultsForUser.copy(place = index + 1) }
+    }
 
     fun getResultsForMatch(matchId: Long) = typeRepository.findByMatch_Id(matchId)
             .map { UserResultForMatch(it.user.fullName, 0, ResultForMatch(it.match.fullLabel, it.pointsForType)) }
@@ -53,9 +58,8 @@ class ResultService(
         else -> noPoints
     }
 
-    private fun getAllResultsForUser(login: String) = matchRepository.findAll()
-            .sortedBy { it.id }
-            .mapIndexed { id, match -> ResultForMatch(match.fullLabel, typeRepository.findByMatch_IdAndUser_login(id.toLong(), login)?.pointsForType) }
+    private fun getAllResultsForUser(login: String, matches: List<Match>) = matches
+            .mapIndexed { _, match -> ResultForMatch(match.fullLabel, typeRepository.findByMatch_IdAndUser_login(match.id!!, login)?.pointsForType) }
 
     companion object : KLogging()
 }

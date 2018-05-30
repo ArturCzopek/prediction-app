@@ -26,7 +26,7 @@ import {Component} from '@angular/core';
         </div>
         <div class="right menu">
           <a class="item" [routerLink]="['/home']" routerLinkActive="active">Home</a>
-          <a class="item" [routerLink]="['/ranking']" routerLinkActive="active">Ranking</a>
+          <a class="item" [routerLink]="['/results']" routerLinkActive="active">Results</a>
         </div>
       </div>
     </div>

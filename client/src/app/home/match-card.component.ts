@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthService} from "../shared/auth.service";
-import {DateService} from "../shared/date.service";
-import {StreamService} from "../shared/stream.service";
+import {AuthService} from "../shared/services/auth.service";
+import {DateService} from "../shared/services/date.service";
+import {StreamService} from "../shared/services/stream.service";
 import {MatchWithUserType} from "../shared/model";
 
 

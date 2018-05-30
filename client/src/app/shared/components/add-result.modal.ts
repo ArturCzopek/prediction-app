@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs/internal/Subscription";
-import {StreamService} from "../shared/stream.service";
-import {TypeService} from "../shared/type.service";
-import {MatchWithUserType, NewType} from "../shared/model";
+import {StreamService} from "../services/stream.service";
+import {MatchService} from "../services/match.service";
+import {Match, MatchResult} from "../model";
 
 declare var $: any;
 
 
 @Component({
-  selector: 'sc-modal-add-type',
+  selector: 'sc-modal-add-result',
   styles: [`
     input[type=number] {
       width: 65px !important;
@@ -38,8 +38,8 @@ declare var $: any;
     }
   `],
   template: `
-    <div id="add-type-modal" class="ui small modal">
-      <div class="header">Add Type</div>
+    <div id="add-result-modal" class="ui small modal">
+      <div class="header">Add Result</div>
       <div class="content">
         <div class="ui positive message" *ngIf="successMessage">
           <div class="header">Success!</div>
@@ -49,10 +49,10 @@ declare var $: any;
           <div class="header">Error!</div>
           <p>{{errorMessage}}</p>
         </div>
-        <div class="ui form">
+        <div class="ui form" *ngIf="currentMatch">
           <div class="two fields">
             <div class="inline field">
-              <label>{{currentMatchWithType?.match?.team1}}</label>
+              <label>{{currentMatch?.team1}}</label>
               <input type="number" min="0" step="1" [(ngModel)]="goals1">
             </div>
             <div class="form-separator">
@@ -60,14 +60,14 @@ declare var $: any;
             </div>
             <div class="inline field">
               <input type="number" min="0" step="1" [(ngModel)]="goals2">
-              <label>{{currentMatchWithType?.match?.team2}}</label>
+              <label>{{currentMatch?.team2}}</label>
             </div>
           </div>
         </div>
       </div>
       <div class="actions">
         <div class="ui buttons">
-          <button class="ui positive button" (click)="addType()" [class.disabled]="!isTypeValid()">Add</button>
+          <button class="ui positive button" (click)="addResult()" [class.disabled]="!isResultValid()">Add</button>
           <div class="or"></div>
           <button class="ui button" (click)="closeModal()">Cancel</button>
         </div>
@@ -75,9 +75,9 @@ declare var $: any;
     </div>
   `
 })
-export class AddTypeModal implements OnInit, OnDestroy {
+export class AddResultModal implements OnInit, OnDestroy {
 
-  public currentMatchWithType: MatchWithUserType;
+  public currentMatch: Match;
   public goals1 = 0;
   public goals2 = 0;
   public successMessage = '';
@@ -86,17 +86,17 @@ export class AddTypeModal implements OnInit, OnDestroy {
 
   constructor(
     private streamService: StreamService,
-    private typeService: TypeService
+    private matchService: MatchService
   ) {
   }
 
   ngOnInit(): void {
-    this.openModal$ = this.streamService.addTypeModal.subscribe((matchWithUserType: MatchWithUserType) => {
-      this.currentMatchWithType = matchWithUserType;
+    this.openModal$ = this.streamService.addResultModal.subscribe((match: Match) => {
+      this.currentMatch = match;
       this.openModal()
     });
 
-    $('#add-type-modal').modal({
+    $('#add-result-modal').modal({
       closeable: false,
       onApprove: () => false
     });
@@ -108,22 +108,22 @@ export class AddTypeModal implements OnInit, OnDestroy {
     }
   }
 
-  isTypeValid(): boolean {
+  isResultValid(): boolean {
     return Number.isInteger(this.goals1) && this.goals1 >= 0 &&
       Number.isInteger(this.goals2) && this.goals2 >= 0;
   }
 
-  addType() {
-    this.typeService.addNewType(
-      <NewType> {
-        matchId: this.currentMatchWithType.match.id,
+  addResult() {
+    this.matchService.addResult(
+      <MatchResult> {
+        matchId: this.currentMatch.id,
         goals1: this.goals1,
         goals2: this.goals2,
       }
     ).subscribe(
-      type => {
+      matchWithResult => {
         this.errorMessage = '';
-        this.successMessage = `Type updated: ${type.goals1} : ${type.goals2}`;
+        this.successMessage = `Result updated: ${matchWithResult.team1} ${matchWithResult.goals1}:${matchWithResult.goals2} ${matchWithResult.team2}`;
         setTimeout(() => {
           this.closeModal();
           this.streamService.callRefreshHomePage();
@@ -131,21 +131,21 @@ export class AddTypeModal implements OnInit, OnDestroy {
       },
       error => {
         this.successMessage = '';
-        this.errorMessage = 'Cannot add type! Contact admin if you are still having a problem';
+        this.errorMessage = 'Cannot add result! Contact admin if you are still having a problem';
       }
     )
   }
 
   public closeModal() {
-    $('#add-type-modal').modal('hide');
+    $('#add-result-modal').modal('hide');
   }
 
   private openModal() {
-    this.goals1 = (this.currentMatchWithType.type) ? this.currentMatchWithType.type.goals1 : 0;
-    this.goals2 = (this.currentMatchWithType.type) ? this.currentMatchWithType.type.goals2 : 0;
+    this.goals1 = this.currentMatch.goals1 || 0;
+    this.goals2 = this.currentMatch.goals2 || 0;
     this.successMessage = '';
     this.errorMessage = '';
 
-    $('#add-type-modal').modal('show');
+    $('#add-result-modal').modal('show');
   }
 }

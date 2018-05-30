@@ -23,9 +23,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
               "node_modules/semantic-ui-css/semantic.css",
-              "node_modules/semantic-ui-calendar/dist/calendar.css"
+              "node_modules/semantic-ui-calendar/dist/calendar.css",
+              "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

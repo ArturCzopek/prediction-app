@@ -54,9 +54,6 @@
             </column>
             <column name="MTC_GOALS_1" type="int" defaultValue="null"></column>
             <column name="MTC_GOALS_2" type="int" defaultValue="null"></column>
-            <column name="MTC_CALCULATED" type="boolean" defaultValueBoolean="false">
-                <constraints nullable="false"/>
-            </column>
             <column name="MTC_RESULT_ADDED" type="boolean" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>

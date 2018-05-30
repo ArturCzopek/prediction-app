@@ -1,5 +1,5 @@
 import {Component,} from '@angular/core';
-import {StreamService} from "../shared/stream.service";
+import {StreamService} from "../shared/services/stream.service";
 
 
 @Component({

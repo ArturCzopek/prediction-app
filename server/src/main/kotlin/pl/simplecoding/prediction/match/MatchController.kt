@@ -1,7 +1,7 @@
 package pl.simplecoding.prediction.match
 
 import org.springframework.security.core.Authentication
-import org.springframework.web.bind.annotation.* // ktlint-disable no-wildcard-imports
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/matches")

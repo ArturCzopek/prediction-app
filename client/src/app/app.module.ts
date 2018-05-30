@@ -5,23 +5,24 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {PageNotFoundComponent} from "./page-not-found.component";
-import {RankingComponent} from "./ranking/ranking.component";
+import {ResultsComponent} from "./results/results.component";
 import {HomeComponent} from "./home/home.component";
 import {HeaderComponent} from "./header.component";
 import {HomeModule} from "./home/home.module";
-import {RankingModule} from "./ranking/ranking.module";
-import {UserService} from "./shared/user.service";
-import {MatchService} from "./shared/match.service";
-import {LoaderComponent} from "./shared/loader.component";
-import {AuthService} from "./shared/auth.service";
-import {DateService} from "./shared/date.service";
-import {StreamService} from "./shared/stream.service";
-import {TypeService} from "./shared/type.service";
+import {ResultsModule} from "./results/results.module";
+import {UserService} from "./shared/services/user.service";
+import {MatchService} from "./shared/services/match.service";
+import {AuthService} from "./shared/services/auth.service";
+import {DateService} from "./shared/services/date.service";
+import {StreamService} from "./shared/services/stream.service";
+import {TypeService} from "./shared/services/type.service";
+import {ResultService} from "./shared/services/result.service";
+import {SharedModule} from "./shared/shared.module";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'ranking', component: RankingComponent},
+  {path: 'results', component: ResultsComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -35,13 +36,15 @@ const routes: Routes = [
     BrowserModule,
     HomeModule,
     HttpClientModule,
-    RankingModule,
+    ResultsModule,
     RouterModule.forRoot(routes, {useHash: true}),
+    SharedModule
   ],
   providers: [
     AuthService,
     DateService,
     MatchService,
+    ResultService,
     StreamService,
     TypeService,
     UserService

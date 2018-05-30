@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs/internal/Subscription";
-import {StreamService} from "../shared/stream.service";
-import {DateService} from "../shared/date.service";
-import {MatchService} from "../shared/match.service";
-import {NewMatch} from "../shared/model";
+import {StreamService} from "../services/stream.service";
+import {DateService} from "../services/date.service";
+import {MatchService} from "../services/match.service";
+import {NewMatch} from "../model";
 
 declare var $: any;
 

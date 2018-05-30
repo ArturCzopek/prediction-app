@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs/internal/Subject";
-import {Match, MatchWithUserType} from "./model";
+import {Match, MatchWithUserType} from "../model";
 
 
 @Injectable()

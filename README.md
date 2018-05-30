@@ -93,13 +93,6 @@ cd client
 ng lint
 ```
 
-For **back-end**, we use [KtLint](https://ktlint.github.io/) to verify our code. You need to configure linter for yourself with IDE to check continuously your code. If you want to check it from console, just type:
-
-```
-cd server
-./gradlew lintKotlin
-```
-
 ## Deployment
 
 For now, we don't have production version. Instruction will be available after first release.
@@ -119,9 +112,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## To do - 1.0
 
-- [ ] - FE - whole ranking table
-- [ ] - FE - not found page
-- [ ] - FE - optimise ngfor
 - [ ] - D - installation instruction
 
 ## To do - 1.1
@@ -135,6 +125,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Todo - 1.2
 
 - [ ] - FE - privacy policy etc
+- [ ] - BE/FE - admin panel, user modifications
 
 
 ## Done
@@ -156,6 +147,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - FE - adding match result (only admin user)
 - [x] - FE - adding user type/prediction
 - [x] - BE - logging configuration
+- [x] - FE - whole ranking table
+- [x] - FE - not found page
+- [x] - FE - optimise ngfor
 
 
 ## License

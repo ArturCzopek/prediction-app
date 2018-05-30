@@ -54,3 +54,15 @@ export interface NewType {
   goals1: number,
   goals2: number
 }
+
+export interface AllResultsForUser {
+  fullUserName: string,
+  place: number,
+  resultsForMatches: ResultForMatch[],
+  summaryPoints: number
+}
+
+export interface ResultForMatch{
+  matchLabel: string,
+  pointsForMatch?: number
+}

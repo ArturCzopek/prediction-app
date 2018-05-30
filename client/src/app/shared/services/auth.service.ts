@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {UserService} from "./user.service";
-import {User, UserRole} from "./model";
+import {User, UserRole} from "../model";
 
 @Injectable()
 export class AuthService {

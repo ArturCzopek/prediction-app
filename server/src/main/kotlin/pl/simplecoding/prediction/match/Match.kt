@@ -3,7 +3,7 @@ package pl.simplecoding.prediction.match
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
-import javax.persistence.* // ktlint-disable no-wildcard-imports
+import javax.persistence.*
 import javax.validation.constraints.NotEmpty
 
 @Entity
