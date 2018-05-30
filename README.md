@@ -108,10 +108,12 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Artur Czopek**  - *developer* - [SimpleCoding blog](https://simplecoding.pl)
+* **Artur Czopek** - *developer* - [SimpleCoding blog](https://simplecoding.pl)
 
 ## To do - 1.0
 
+- [ ] - BE - log-out
+- [ ] - FE - moment - get time zone from server
 - [ ] - D - installation instruction
 
 ## To do - 1.1
