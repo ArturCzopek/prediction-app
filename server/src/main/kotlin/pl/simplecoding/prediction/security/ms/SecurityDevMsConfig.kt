@@ -1,5 +1,6 @@
 package pl.simplecoding.prediction.security.ms
 
+import mu.KLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
@@ -18,7 +19,8 @@ import pl.simplecoding.prediction.security.UserDetailsService
 @Profile("dev-ms")
 class SecurityDevMsConfig(
         private val userDetailsService: UserDetailsService,
-        @Value("\${spring.security.static-user}") private val staticUser: String
+        @Value("\${spring.security.static-user}") private val staticUser: String,
+        @Value("\${metrosoft.client-url}") private val clientUrl: String
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
@@ -27,9 +29,15 @@ class SecurityDevMsConfig(
                 .addFilterBefore(staticUserPreAuthenticatedProcessingFilter(), UsernamePasswordAuthenticationFilter::class.java)
                 .authorizeRequests()
                     .antMatchers("/").permitAll()
+                .and().logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("$clientUrl/#/logout")
+                    .invalidateHttpSession(true)
                 .and()
                     .csrf().disable()
                     .headers().disable()
+
+            logger.info { "Client url: $clientUrl"}
         // @formatter:on
     }
 
@@ -43,4 +51,6 @@ class SecurityDevMsConfig(
     private fun staticUserPreAuthenticatedProcessingFilter() = StaticUserPreAuthenticatedProcessingFilter(this.staticUser).apply {
         setAuthenticationManager(authenticationManager())
     }
+
+    companion object: KLogging()
 }

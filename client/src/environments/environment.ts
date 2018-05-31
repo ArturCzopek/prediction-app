@@ -7,7 +7,8 @@ export const environment = {
   matchesUrl: 'api/matches',
   resultsUrl: 'api/results',
   typesUrl: 'api/types',
-  usersUrl: 'api/users'
+  usersUrl: 'api/users',
+  logoutUrl: 'logout'
 };
 
 /*

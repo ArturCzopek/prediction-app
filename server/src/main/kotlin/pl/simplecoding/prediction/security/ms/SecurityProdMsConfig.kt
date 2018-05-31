@@ -1,6 +1,7 @@
 package pl.simplecoding.prediction.security.ms
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -21,7 +22,8 @@ import pl.simplecoding.prediction.user.UserService
 @Profile("prod-ms")
 class WebSecurityProductionConfig(
         private val userDetailsService: UserDetailsService,
-        private val userService: UserService
+        private val userService: UserService,
+        @Value("\${metrosoft.client-url}") private val clientUrl: String
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
@@ -31,6 +33,10 @@ class WebSecurityProductionConfig(
                 .addFilterAfter(CheckUserExistenceFilter(userService), WaffleUserPreAuthenticatedProcessingFilter::class.java)
                 .authorizeRequests()
                     .anyRequest().authenticated()
+                .and().logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("$clientUrl/#/logout")
+                    .invalidateHttpSession(true)
                 .and()
                     .csrf().disable()
                     .headers().disable()

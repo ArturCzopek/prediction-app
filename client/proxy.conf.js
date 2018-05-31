@@ -5,6 +5,7 @@ const PROXY_CONFIG = [
       "/api/results",
       "/api/types",
       "/api/user",
+      "/logout"
     ],
     target: "http://localhost:8080",
     secure: false

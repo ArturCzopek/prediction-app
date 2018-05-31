@@ -18,11 +18,13 @@ import {StreamService} from "./shared/services/stream.service";
 import {TypeService} from "./shared/services/type.service";
 import {ResultService} from "./shared/services/result.service";
 import {SharedModule} from "./shared/shared.module";
+import {LogoutComponent} from "./logout.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'results', component: ResultsComponent},
+  {path: 'logout', component: LogoutComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -30,6 +32,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
+    LogoutComponent,
     PageNotFoundComponent,
   ],
   imports: [

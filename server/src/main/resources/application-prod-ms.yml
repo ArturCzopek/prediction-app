@@ -25,3 +25,6 @@ spring:
 server:
   address: ${MS_PRED_APP_URL}
   port: ${MS_PRED_APP_PORT}
+
+metrosoft:
+  client-url: ${MS_PRED_APP_URL}

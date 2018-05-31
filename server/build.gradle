@@ -46,18 +46,22 @@ task buildFrontDev(type: Exec) {
     workingDir '../client'
     commandLine 'ng', 'build', '--base-href', 'http://localhost:8080', '--prod'
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'rmdir', '/s', '/q', '..\\server\\src\\main\\resources\\static'
         commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
     } else {
+        commandLine 'rm', '-r',  '../server/src/main/resources/static/*'
         commandLine 'cp', '-a', '/dist/prediction-app/', '../server/src/main/resources/static'
     }
 }
 
 task buildFrontProdMs(type: Exec) {
     workingDir '../client'
-    commandLine 'ng', 'build', '--base-href', "${System.getenv('MS_PRED_APP_URL') ?: 'http://localhost'}:${System.getenv('MS_PRED_APP_PORT') ?: '8080'}", '--prod'
+    commandLine 'ng', 'build', '--base-href', 'http://localhost:80', '--prod'
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'rmdir', '/s', '/q', '..\\server\\src\\main\\resources\\static'
         commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
     } else {
+        commandLine 'rm', '-r',  '../server/src/main/resources/static/*'
         commandLine 'cp', '-a', '/dist/prediction-app/', '../server/src/main/resources/static'
     }
 }
