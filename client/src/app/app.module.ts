@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -47,9 +47,20 @@ const routes: Routes = [
     ResultService,
     StreamService,
     TypeService,
-    UserService
+    UserService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: loadUserTimeZone,
+      deps: [DateService],
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }
+
+export function loadUserTimeZone(dateService: DateService) {
+  return () => dateService.loadTimeZone();
+};

@@ -15,4 +15,4 @@ logging:
       hibernate: INFO
     pl:
       simplecoding: INFO
-  file: ${MS_PRED_LOG_PATH:.}/logs/prediction-app.log
+  file: ${MS_PRED_LOG_PATH:.}prediction-app.log

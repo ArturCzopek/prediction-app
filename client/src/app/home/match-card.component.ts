@@ -119,8 +119,7 @@ import {MatchWithUserType} from "../shared/model";
       <div class="match-card__content">
         <div class="match-card__content__title">
           <div class="match-card__content__title__team1">{{matchWithType.match.team1}}</div>
-          <div class="match-card__content__title__result">{{goals1}} : {{goals2}}
-          </div>
+          <div class="match-card__content__title__result">{{goals1}} : {{goals2}}</div>
           <div class="match-card__content__title__team2">{{matchWithType.match.team2}}</div>
         </div>
         <div class="match-card__content__subtitle">{{formattedDate}}</div>
@@ -169,7 +168,7 @@ export class MatchCardComponent implements OnInit {
   ngOnInit(): void {
     const {match, type} = this.matchWithType;
     this.isAdmin = this.authService.isLoggedInAsAdmin();
-    this.canPredict = this.dateService.isDateValidToPredict(match.time) && !this.arePointsForType();
+    this.canPredict = this.dateService.isDateValidToPredict(match.time);
     this.canAddResult = this.isAdmin && this.dateService.isDateValidToAddResult(match.time);
     this.isActionAvailable = this.canAddResult || this.canPredict;
     this.formattedDate = this.dateService.convertDateFromDbToString(match.time);

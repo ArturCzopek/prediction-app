@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse
 
 class CheckUserExistenceFilter(private val userService: UserService) : GenericFilterBean() {
     override fun doFilter(req: ServletRequest, res: ServletResponse, chain: FilterChain) {
-        with(userService.getUserByLogin(SecurityContextHolder.getContext().authentication.name)) {
+        with(userService.getUserByLogin(SecurityContextHolder.getContext().authentication?.name ?: "")) {
             if (this == null || !this.enabled) {
                 (res as HttpServletResponse).sendError(HttpServletResponse.SC_NOT_FOUND)
                 return
