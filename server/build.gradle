@@ -44,7 +44,7 @@ compileTestKotlin {
 
 task buildFrontDev(type: Exec) {
     workingDir '../client'
-    commandLine 'ng', 'build', '--base-href', 'http://localhost:8080', '--prod'
+    commandLine 'ng', 'build'
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine 'rmdir', '/s', '/q', '..\\server\\src\\main\\resources\\static'
         commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
@@ -56,9 +56,10 @@ task buildFrontDev(type: Exec) {
 
 task buildFrontProdMs(type: Exec) {
     workingDir '../client'
-    commandLine 'ng', 'build', '--base-href', 'http://localhost:80', '--prod'
+    commandLine 'ng', 'build', '--prod'
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine 'rmdir', '/s', '/q', '..\\server\\src\\main\\resources\\static'
+        commandLine 'mkdir', '..\\server\\src\\main\\resources\\static'
         commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
     } else {
         commandLine 'rm', '-r',  '../server/src/main/resources/static/*'

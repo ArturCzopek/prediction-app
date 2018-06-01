@@ -25,9 +25,13 @@ class MatchService(
 
     fun addMatch(newMatchDto: NewMatchDto, login: String) = with(newMatchDto) {
         require(LocalDateTime.now() < this.time) { "You cannot add past matches" }
-        require(this.team1 != this.team2) { "Teams names must be different" }
+        require(this.team1.trim() != this.team2.trim()) { "Teams names must be different" }
         require(userService.getUserByLogin(login)?.role == UserRole.ADMIN) { "Action allowed only for admin!" }
-        val (label, time, team1, team2) = this
+
+        val label = this.label.trim()
+        val team1 = this.team1.trim()
+        val team2 = this.team2.trim()
+
         require(matchRepository.findByLabelAndTeam1AndTeam2(label, team1, team2) == null) { "Match with this parameters already exist!" }
 
         matchRepository.save(Match(
