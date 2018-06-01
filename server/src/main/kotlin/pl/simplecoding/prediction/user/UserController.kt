@@ -1,9 +1,8 @@
 package pl.simplecoding.prediction.user
 
+import org.springframework.http.HttpStatus
 import org.springframework.security.core.Authentication
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
@@ -15,4 +14,34 @@ class UserController(private val userService: UserService) {
 
     @GetMapping("/timezone")
     fun getTimeZoneForUser(timeZone: TimeZone) = timeZone
+
+    @GetMapping("/all")
+    fun getAllUsers(authentication: Authentication): List<User> {
+        return when (userService.getUserByLogin(authentication.name)?.role) {
+            UserRole.ADMIN -> userService.getAllUsers()
+            else -> throw IllegalAccessException("User has no access to get users list")
+        }
+    }
+
+    @PostMapping("/disable")
+    fun disableUser(@RequestBody userId: Long, authentication: Authentication): HttpStatus {
+        return when (userService.getUserByLogin(authentication.name)?.role) {
+            UserRole.ADMIN -> {
+                userService.toggleEnableStatus(userId, false)
+                HttpStatus.OK
+            }
+            else -> HttpStatus.FORBIDDEN
+        }
+    }
+
+    @PostMapping("/enable")
+    fun enableUser(@RequestBody userId: Long, authentication: Authentication): HttpStatus {
+        return when (userService.getUserByLogin(authentication.name)?.role) {
+            UserRole.ADMIN -> {
+                userService.toggleEnableStatus(userId, true)
+                HttpStatus.OK
+            }
+            else -> HttpStatus.FORBIDDEN
+        }
+    }
 }

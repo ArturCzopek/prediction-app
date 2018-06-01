@@ -27,6 +27,7 @@ import {Component} from '@angular/core';
         <div class="right menu">
           <a class="item" [routerLink]="['/home']" routerLinkActive="active">Home</a>
           <a class="item" [routerLink]="['/results']" routerLinkActive="active">Results</a>
+          <a class="item" [routerLink]="['/admin']" routerLinkActive="active">Admin Panel</a>
         </div>
       </div>
     </div>

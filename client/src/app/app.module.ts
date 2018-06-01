@@ -18,11 +18,16 @@ import {StreamService} from "./shared/services/stream.service";
 import {TypeService} from "./shared/services/type.service";
 import {ResultService} from "./shared/services/result.service";
 import {SharedModule} from "./shared/shared.module";
+import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
+import {AdminPanelModule} from "./admin-panel/admin-panel.module";
+import {UsersManagementComponent} from "./admin-panel/users-management.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'results', component: ResultsComponent},
+  {path: 'admin', component: AdminPanelComponent},
+  {path: 'admin/users', component: UsersManagementComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -38,7 +43,8 @@ const routes: Routes = [
     HttpClientModule,
     ResultsModule,
     RouterModule.forRoot(routes, {useHash: true}),
-    SharedModule
+    SharedModule,
+    AdminPanelModule
   ],
   providers: [
     AuthService,

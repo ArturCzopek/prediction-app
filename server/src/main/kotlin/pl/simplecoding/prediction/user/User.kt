@@ -41,7 +41,7 @@ data class User(
         val lastName: String,
 
         @Column(name = "USR_ENABLED")
-        val enabled: Boolean,
+        var enabled: Boolean,
 
         @CreatedDate
         @Column(name = "USR_CREATED")
