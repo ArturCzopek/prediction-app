@@ -33,10 +33,10 @@ import {UserService} from "../shared/services/user.service";
               {{userInfo.fullName}}
             </td>
             <td *ngIf="!loggedUser(userInfo)" class="right aligned">
-              <button *ngIf="userInfo.enabled" class="ui negative button" (click)="disableUser(userInfo)">Disable
+              <button *ngIf="userInfo.enabled" class="ui negative button" (click)="toggleEnableUserStatus(userInfo)">Disable
               </button>
               <div class="or"></div>
-              <button *ngIf="!userInfo.enabled" class="ui positive button" (click)="enableUser(userInfo)">Enable
+              <button *ngIf="!userInfo.enabled" class="ui positive button" (click)="toggleEnableUserStatus(userInfo)">Enable
               </button>
             </td>
           </tr>
@@ -80,23 +80,12 @@ export class UsersManagementComponent implements OnInit {
     return fullName;
   }
 
-  private disableUser(userInfo: UserInfo) {
-    this.userService.disableUser(userInfo.id)
-      .subscribe(
-        statusOK => {
-          userInfo.enabled = false
-        },
-        error => {
-          console.error("User not found", error)
-        }
-      );
-  }
 
-  private enableUser(userInfo: UserInfo) {
-    this.userService.enableUser(userInfo.id)
+  private toggleEnableUserStatus(userInfo: UserInfo) {
+    this.userService.toggleEnableUserStatus(userInfo.id)
       .subscribe(
         statusOK => {
-          userInfo.enabled = true;
+          userInfo.enabled = !userInfo.enabled;
         },
         error => {
           console.error("User not found", error)

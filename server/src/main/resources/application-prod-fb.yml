@@ -1,0 +1,37 @@
+spring:
+  profiles: prod-fb
+  jpa:
+    hibernate:
+      ddl-auto: none
+  h2:
+    console:
+      enabled: false
+  datasource:
+    url: ${SC_PRED_DB_URL}
+    username: ${SC_PRED_DB_USR}
+    password: ${SC_PRED_DB_PASS}
+    driver-class-name: com.mysql.jdbc.Driver
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master-fb.xml
+    enabled: true
+  devtools:
+    livereload:
+      enabled: false
+    restart:
+      enabled: false
+    remote:
+      restart:
+        enabled: false
+  security:
+    oauth2:
+      client:
+        scope: public_profile, email, user_about_me
+        registration:
+          facebook:
+            client-id: ${SC_PRED_FB_ID}
+            client-secret: ${SC_PRED_FB_SECRET}
+
+server:
+  address: ${SC_PRED_APP_URL}
+  port: ${SC_PRED_APP_PORT}
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction App - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        @font-face {
+            font-family: "My Custom Font";
+            src: url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin) format("truetype");
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1, button {
+            font-size: 90px;
+            font-family: "My Custom Font", Verdana, Tahoma;
+        }
+
+        button {
+            background-color: #3B5998;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+            height: 60px;
+            width: 300px;
+        }
+
+        button:hover {
+            background-color: #3B5CA0;
+        }
+
+        .content {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            height: 80%;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .fa {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <h1>Prediction App</h1>
+    <button onclick="location.href = '/oauth2/authorization/facebook'">Login with Facebook <a href="#" class="fa fa-facebook"></a></button>
+</div>
+</body>
+</html>

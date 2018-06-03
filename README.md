@@ -110,24 +110,18 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Artur Czopek** - *developer* - [SimpleCoding blog](https://simplecoding.pl)
 
-## To do - 1.0
 
-- [ ] - BE - log-out
-- [ ] - FE - moment - get time zone from server
+## To do - 1.2
+
 - [ ] - D - installation instruction
-
-## To do - 1.1
-
+- [ ] - BE/FE - admin panel, user modifications
 - [ ] - BE/FE - tests
 - [ ] - BE - CI/CD process
-- [ ] - BE/FE - fb oauth security
-- [ ] - BE/FE - AWS deployment
 - [ ] - I - license
 
-## Todo - 1.2
+## Todo - 1.3
 
 - [ ] - FE - privacy policy etc
-- [ ] - BE/FE - admin panel, user modifications
 
 
 ## Done
@@ -152,6 +146,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - FE - whole ranking table
 - [x] - FE - not found page
 - [x] - FE - optimise ngfor
+- [x] - BE/FE - fb oauth security
+- [x] - BE/FE - AWS deployment
 
 
 ## License

@@ -24,6 +24,7 @@ import {UsersManagementComponent} from "./admin-panel/users-management.component
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '_', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'results', component: ResultsComponent},
   {path: 'admin', component: AdminPanelComponent},

@@ -1,4 +1,4 @@
-package pl.simplecoding.prediction.security.ms
+package pl.simplecoding.prediction.security
 
 import mu.KLogging
 import org.springframework.security.core.context.SecurityContextHolder
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse
 
 class CheckUserExistenceFilter(private val userService: UserService) : GenericFilterBean() {
     override fun doFilter(req: ServletRequest, res: ServletResponse, chain: FilterChain) {
-        with(userService.getUserByLogin(SecurityContextHolder.getContext()?.authentication?.name
+        with(userService.getUserByLogin(SecurityContextHolder.getContext()?.authentication
                 ?: throw IllegalStateException("User not logged in").also { logger.warn { "User not logged in" } })) {
             if (this == null || !this.enabled) {
                 (res as HttpServletResponse).sendError(HttpServletResponse.SC_NOT_FOUND)

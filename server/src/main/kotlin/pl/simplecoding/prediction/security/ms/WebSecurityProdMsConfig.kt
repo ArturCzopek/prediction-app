@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsByNameServiceWra
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken
+import pl.simplecoding.prediction.security.CheckUserExistenceFilter
 import pl.simplecoding.prediction.security.UserDetailsService
 import pl.simplecoding.prediction.user.UserService
 

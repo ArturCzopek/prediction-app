@@ -49,7 +49,7 @@ task buildFrontDev(type: Exec) {
         commandLine 'rmdir', '/s', '/q', '..\\server\\src\\main\\resources\\static'
         commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
     } else {
-        commandLine 'rm', '-r',  '../server/src/main/resources/static/*'
+        commandLine 'rm', '-r', '../server/src/main/resources/static/*'
         commandLine 'cp', '-a', '/dist/prediction-app/', '../server/src/main/resources/static'
     }
 }
@@ -62,7 +62,7 @@ task buildFrontProdMs(type: Exec) {
         commandLine 'mkdir', '..\\server\\src\\main\\resources\\static'
         commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
     } else {
-        commandLine 'rm', '-r',  '../server/src/main/resources/static/*'
+        commandLine 'rm', '-r', '../server/src/main/resources/static/*'
         commandLine 'cp', '-a', '/dist/prediction-app/', '../server/src/main/resources/static'
     }
 }
@@ -76,6 +76,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.security:spring-security-oauth2-client')
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile('org.liquibase:liquibase-core')
     compile('org.jetbrains.kotlin:kotlin-stdlib-jdk8')

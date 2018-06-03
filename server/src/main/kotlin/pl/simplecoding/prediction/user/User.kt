@@ -41,12 +41,14 @@ data class User(
         val lastName: String,
 
         @Column(name = "USR_ENABLED")
-        var enabled: Boolean,
+        val enabled: Boolean = true,
 
         @CreatedDate
         @Column(name = "USR_CREATED")
-        val created: LocalDateTime
+        val created: LocalDateTime = LocalDateTime.now()
 ) {
-    val fullName
+        constructor(login: String, email: String, firstName: String, lastName: String) : this(null, login, email, UserRole.REGULAR, firstName, lastName)
+
+        val fullName
         get() = "$firstName $lastName"
 }

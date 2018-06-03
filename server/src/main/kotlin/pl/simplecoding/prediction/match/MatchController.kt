@@ -11,8 +11,8 @@ class MatchController(private val matchService: MatchService) {
     fun getAllMatches(authentication: Authentication) = matchService.getAllMatchesWithUserTypes(authentication.name)
 
     @PostMapping("/new")
-    fun addMatch(@RequestBody newMatch: NewMatchDto, authentication: Authentication) = matchService.addMatch(newMatch, authentication.name)
+    fun addMatch(@RequestBody newMatch: NewMatchDto, authentication: Authentication) = matchService.addMatch(newMatch, authentication)
 
     @PostMapping("/result")
-    fun addMatchResult(@RequestBody matchResult: MatchResultDto, authentication: Authentication) = matchService.addMatchResult(matchResult, authentication.name)
+    fun addMatchResult(@RequestBody matchResult: MatchResultDto, authentication: Authentication) = matchService.addMatchResult(matchResult, authentication)
 }

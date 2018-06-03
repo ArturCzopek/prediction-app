@@ -5,7 +5,6 @@ import {environment} from "../../../environments/environment";
 import {User, UserInfo} from "../model";
 
 
-
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) {
@@ -19,11 +18,7 @@ export class UserService {
      return this.http.get<UserInfo[]>(`${environment.usersUrl}/all`);
   }
 
-  public disableUser(userId: number) {
-    return this.http.post<UserInfo>(`${environment.usersUrl}/disable`, userId);
-  }
-
-  public enableUser(userId: number) {
-    return this.http.post<UserInfo>(`${environment.usersUrl}/enable`, userId);
+  public toggleEnableUserStatus(userId: number) {
+    return this.http.post<UserInfo>(`${environment.usersUrl}/toggle-enable`, userId);
   }
 }
