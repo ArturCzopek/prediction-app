@@ -113,6 +113,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## To do - 1.2
 
+- [ ] - BE - enable/disable user on fb
 - [ ] - D - installation instruction
 - [ ] - BE/FE - admin panel, user modifications
 - [ ] - BE/FE - tests
