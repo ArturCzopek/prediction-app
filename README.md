@@ -111,20 +111,22 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * **Artur Czopek** - *developer* - [SimpleCoding blog](https://simplecoding.pl)
 
 
-## To do - 1.2
+## To do - 1.2.0
 
+- [ ] - FE - block buttons when request on modal is sent
 - [ ] - D - installation instruction
 - [ ] - BE/FE - admin panel, user modifications
 - [ ] - BE/FE - tests
 - [ ] - BE - CI/CD process
 - [ ] - I - license
 
-## Todo - 1.3
+## Todo - 1.3.0
 
 - [ ] - FE - privacy policy etc
+- [ ] - FE/BE - messaging system to admin with restrictions
 
 
-## Done
+## Done - 1.0.0
 - [x] - BE - Database structure
 - [x] - BE - Liquibase integration with database
 - [x] - BE - security integration with waffle
@@ -146,8 +148,12 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - FE - whole ranking table
 - [x] - FE - not found page
 - [x] - FE - optimise ngfor
+
+## Done - 1.1.0
+
 - [x] - BE/FE - fb oauth security
 - [x] - BE/FE - AWS deployment
+- [x] - BE/FE - admin dashboard/partially
 
 
 ## License

@@ -10,6 +10,7 @@ server/out/
 server/.gradle/
 server/build/
 server/src/main/resources/db/changelog/samples/users.csv
+server/src/main/resources/db/changelog/samples/users-1.1.0.csv
 
 client/dist/
 client/node_modules/
@@ -20,3 +21,4 @@ client/typings/
 
 /server/src/main/resources/db/changelog/samples/users.csv
 /server/src/main/resources/static/
+/server/src/main/resources/db/changelog/samples/users-1.1.0.csv
