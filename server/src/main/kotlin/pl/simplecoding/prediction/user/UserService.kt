@@ -21,8 +21,8 @@ typealias FbData = Map<String, Any>
 @Service
 class UserService(
         private val userRepository: UserRepository,
-        private val clientService: OAuth2AuthorizedClientService,
-        @Value("\${spring.profiles.active}") private val activeProfile: String
+        @Value("\${spring.profiles.active}") private val activeProfile: String,
+        private val clientService: OAuth2AuthorizedClientService?
 ) {
     fun getUserByLogin(authentication: Authentication?): User? = with(authentication
             ?: throw UserPrincipalNotFoundException("Not found user")) {
@@ -49,7 +49,7 @@ class UserService(
                 = "https://graph.facebook.com/v3.0/$id?fields=email,first_name,last_name&access_token=$token"
 
         val token = with(authentication as OAuth2AuthenticationToken) {
-            clientService.loadAuthorizedClient<OAuth2AuthorizedClient>(
+            clientService!!.loadAuthorizedClient<OAuth2AuthorizedClient>(
                     this.authorizedClientRegistrationId,
                     this.name
             ).accessToken.tokenValue
