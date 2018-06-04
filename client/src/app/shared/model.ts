@@ -66,3 +66,9 @@ export interface ResultForMatch{
   matchLabel: string,
   pointsForMatch?: number
 }
+
+export interface UserInfo {
+  id: number,
+  fullName: string,
+  enabled: boolean
+}

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AuthService} from "./shared/services/auth.service";
 
 
 @Component({
@@ -27,6 +28,7 @@ import {Component} from '@angular/core';
         <div class="right menu">
           <a class="item" [routerLink]="['/home']" routerLinkActive="active">Home</a>
           <a class="item" [routerLink]="['/results']" routerLinkActive="active">Results</a>
+          <a class="item" *ngIf="authService.isLoggedInAsAdmin()" [routerLink]="['/admin']" routerLinkActive="active">Admin Panel</a>
         </div>
       </div>
     </div>
@@ -34,4 +36,5 @@ import {Component} from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(public authService: AuthService) {}
 }

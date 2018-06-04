@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -18,11 +18,17 @@ import {StreamService} from "./shared/services/stream.service";
 import {TypeService} from "./shared/services/type.service";
 import {ResultService} from "./shared/services/result.service";
 import {SharedModule} from "./shared/shared.module";
+import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
+import {AdminPanelModule} from "./admin-panel/admin-panel.module";
+import {UsersManagementComponent} from "./admin-panel/users-management.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '_', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'results', component: ResultsComponent},
+  {path: 'admin', component: AdminPanelComponent},
+  {path: 'admin/users', component: UsersManagementComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -38,7 +44,8 @@ const routes: Routes = [
     HttpClientModule,
     ResultsModule,
     RouterModule.forRoot(routes, {useHash: true}),
-    SharedModule
+    SharedModule,
+    AdminPanelModule
   ],
   providers: [
     AuthService,
@@ -48,19 +55,9 @@ const routes: Routes = [
     StreamService,
     TypeService,
     UserService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: loadUserTimeZone,
-      deps: [DateService],
-      multi: true
-    },
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 
 }
-
-export function loadUserTimeZone(dateService: DateService) {
-  return () => dateService.loadTimeZone();
-};

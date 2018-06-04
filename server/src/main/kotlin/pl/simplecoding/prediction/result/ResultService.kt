@@ -8,6 +8,7 @@ import pl.simplecoding.prediction.match.MatchRepository
 import pl.simplecoding.prediction.type.Type
 import pl.simplecoding.prediction.type.TypeRepository
 import pl.simplecoding.prediction.user.UserRepository
+import kotlin.math.sign
 
 const val exactResultPoints = 3
 const val goodWinnerPoints = 1
@@ -53,8 +54,7 @@ class ResultService(
 
     private fun calculatePointsForType(goals1Typed: Int, goals2Typed: Int, goals1Real: Int, goals2Real: Int) = when {
         goals1Typed == goals1Real && goals2Typed == goals2Real -> exactResultPoints
-        goals1Real == goals2Real && goals1Typed == goals2Typed -> goodWinnerPoints  // draw but other points
-        goals1Real > goals2Real == goals1Typed > goals2Typed -> goodWinnerPoints  // the same sign for comparision for no draw
+        (goals1Real - goals2Real).sign == (goals1Typed - goals2Typed).sign -> goodWinnerPoints  // the same sign for comparision for no draw
         else -> noPoints
     }
 

@@ -27,7 +27,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'pl.simplecoding'
-version = '1.0.0'
+version = '1.1.0'
 sourceCompatibility = 1.8
 compileKotlin {
     kotlinOptions {
@@ -44,24 +44,25 @@ compileTestKotlin {
 
 task buildFrontDev(type: Exec) {
     workingDir '../client'
-    commandLine 'ng', 'build', '--base-href', 'http://localhost:8080', '--prod'
+    commandLine 'ng', 'build'
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine 'rmdir', '/s', '/q', '..\\server\\src\\main\\resources\\static'
         commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
     } else {
-        commandLine 'rm', '-r',  '../server/src/main/resources/static/*'
+        commandLine 'rm', '-r', '../server/src/main/resources/static/*'
         commandLine 'cp', '-a', '/dist/prediction-app/', '../server/src/main/resources/static'
     }
 }
 
 task buildFrontProdMs(type: Exec) {
     workingDir '../client'
-    commandLine 'ng', 'build', '--base-href', 'http://localhost:80', '--prod'
+    commandLine 'ng', 'build', '--prod'
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         commandLine 'rmdir', '/s', '/q', '..\\server\\src\\main\\resources\\static'
+        commandLine 'mkdir', '..\\server\\src\\main\\resources\\static'
         commandLine 'xcopy', 'dist\\prediction-app', '..\\server\\src\\main\\resources\\static'
     } else {
-        commandLine 'rm', '-r',  '../server/src/main/resources/static/*'
+        commandLine 'rm', '-r', '../server/src/main/resources/static/*'
         commandLine 'cp', '-a', '/dist/prediction-app/', '../server/src/main/resources/static'
     }
 }
@@ -75,6 +76,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.security:spring-security-oauth2-client')
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile('org.liquibase:liquibase-core')
     compile('org.jetbrains.kotlin:kotlin-stdlib-jdk8')

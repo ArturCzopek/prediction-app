@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {environment} from "../../../environments/environment";
-import {User} from "../model";
+import {User, UserInfo} from "../model";
 
 
 @Injectable()
@@ -12,5 +12,13 @@ export class UserService {
 
   getLoggedInUserData(): Observable<User> {
     return this.http.get<User>(`${environment.usersUrl}/data`);
+  }
+
+  public getAllUsersInfo(): Observable<UserInfo[]> {
+     return this.http.get<UserInfo[]>(`${environment.usersUrl}/all`);
+  }
+
+  public toggleEnableUserStatus(userId: number) {
+    return this.http.post<UserInfo>(`${environment.usersUrl}/toggle-enable`, userId);
   }
 }

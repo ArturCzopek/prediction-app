@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RestController
 class TypeController(private val typeService: TypeService) {
 
     @PostMapping("/new")
-    fun addType(@RequestBody newTypeDto: NewTypeDto, authentication: Authentication) = typeService.addNewType(newTypeDto, authentication.name)
+    fun addType(@RequestBody newTypeDto: NewTypeDto, authentication: Authentication) = typeService.addNewType(newTypeDto, authentication)
 }

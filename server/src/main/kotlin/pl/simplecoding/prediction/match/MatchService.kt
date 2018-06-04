@@ -1,6 +1,7 @@
 package pl.simplecoding.prediction.match
 
 import mu.KLogging
+import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Service
 import pl.simplecoding.prediction.result.ResultService
 import pl.simplecoding.prediction.type.TypeRepository
@@ -23,11 +24,15 @@ class MatchService(
             .sortedBy { it.match.time }
             .groupBy { it.match.label }
 
-    fun addMatch(newMatchDto: NewMatchDto, login: String) = with(newMatchDto) {
+    fun addMatch(newMatchDto: NewMatchDto, authentication: Authentication) = with(newMatchDto) {
         require(LocalDateTime.now() < this.time) { "You cannot add past matches" }
-        require(this.team1 != this.team2) { "Teams names must be different" }
-        require(userService.getUserByLogin(login)?.role == UserRole.ADMIN) { "Action allowed only for admin!" }
-        val (label, time, team1, team2) = this
+        require(this.team1.trim() != this.team2.trim()) { "Teams names must be different" }
+        require(userService.getUserByLogin(authentication)?.role == UserRole.ADMIN) { "Action allowed only for admin!" }
+
+        val label = this.label.trim()
+        val team1 = this.team1.trim()
+        val team2 = this.team2.trim()
+
         require(matchRepository.findByLabelAndTeam1AndTeam2(label, team1, team2) == null) { "Match with this parameters already exist!" }
 
         matchRepository.save(Match(
@@ -39,11 +44,11 @@ class MatchService(
         ))
     }.also { logger.info { "Added new match: ${it.fullLabel}" } }
 
-    fun addMatchResult(matchResultDto: MatchResultDto, login: String): Match {
+    fun addMatchResult(matchResultDto: MatchResultDto, authentication: Authentication): Match {
         val match = matchRepository.findById(matchResultDto.matchId).get()
         require(LocalDateTime.now() > match.time.plusHours(matchTimeInHours)) { "You can add a result only when match has ended" }
         require(matchResultDto.goals1 >= 0 && matchResultDto.goals2 >= 0) { "Goals amount must be greater or equal 0" }
-        require(userService.getUserByLogin(login)?.role == UserRole.ADMIN) { "Action allowed only for admin!" }
+        require(userService.getUserByLogin(authentication)?.role == UserRole.ADMIN) { "Action allowed only for admin!" }
 
         val updatedMatch = match.copy(goals1 = matchResultDto.goals1, goals2 = matchResultDto.goals2, resultAdded = true)
         return matchRepository.save(updatedMatch).also {
