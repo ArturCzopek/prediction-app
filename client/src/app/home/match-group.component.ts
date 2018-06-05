@@ -12,7 +12,7 @@ import {MatchWithUserType} from "../shared/model";
   template: `
     <div class="ui grid">
       <div class="sixteen wide column"><h2>{{label}}</h2></div>
-      <div *ngFor="let matchWithType of matchGroup" class="eight wide column">
+      <div *ngFor="let matchWithType of matchGroup" class="sixteen wide mobile eight wide computer column">
         <sc-match-card
           [matchWithType]="matchWithType"
         ></sc-match-card>
