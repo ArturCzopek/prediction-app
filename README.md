@@ -109,6 +109,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Artur Czopek** - *developer* - [SimpleCoding blog](https://simplecoding.pl)
+* **Karol Klimończyk** - *developer*
 
 
 ## To do - 1.2.0
@@ -154,6 +155,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - BE/FE - fb oauth security
 - [x] - BE/FE - AWS deployment
 - [x] - BE/FE - admin dashboard/partially
+
+## Done - 1.1.1
+- [x] - FE - responsive design
+- [x] - FE - enter button actions
+- [x] - FE - better closing modal behaviors
 
 
 ## License

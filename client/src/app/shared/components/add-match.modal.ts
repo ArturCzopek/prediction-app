@@ -11,7 +11,7 @@ declare var $: any;
 @Component({
   selector: 'sc-modal-add-match',
   template: `
-    <div id="add-match-modal" class="ui small modal">
+    <div id="add-match-modal" class="ui small modal"  (keyup.enter)="(!buttonsBlocked) ? addMatch() : null">
       <div class="header">Add Match</div>
       <div class="content">
         <div class="ui positive message" *ngIf="successMessage">
@@ -47,9 +47,9 @@ declare var $: any;
       </div>
       <div class="actions">
         <div class="ui buttons">
-          <button class="ui positive button" (click)="addMatch()" [class.disabled]="!isNewMatchValid()">Add</button>
+          <button class="ui positive button" (click)="addMatch()" [class.disabled]="!isNewMatchValid() || buttonsBlocked">Add</button>
           <div class="or"></div>
-          <button class="ui button" (click)="closeModal()">Cancel</button>
+          <button class="ui button" (click)="closeModal()" [class.disabled]="buttonsBlocked">Cancel</button>
         </div>
       </div>
     </div>
@@ -63,6 +63,7 @@ export class AddMatchModal implements OnInit, OnDestroy {
   public date = '';
   public successMessage = '';
   public errorMessage = '';
+  public buttonsBlocked = false;
   private openModal$: Subscription;
 
   constructor(
@@ -75,7 +76,7 @@ export class AddMatchModal implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.openModal$ = this.streamService.addMatchModal.subscribe(nothing => this.openModal());
     $('#add-match-modal').modal({
-      closeable: false,
+      closable: false,
       onApprove: () => false
     });
     $('#match-date').calendar({
@@ -102,6 +103,7 @@ export class AddMatchModal implements OnInit, OnDestroy {
   }
 
   addMatch() {
+    this.buttonsBlocked = true;
     this.matchService.addNewMatch(
       <NewMatch> {
         label: this.label,
@@ -116,9 +118,10 @@ export class AddMatchModal implements OnInit, OnDestroy {
         setTimeout(() => {
           this.closeModal();
           this.streamService.callRefreshHomePage();
-        }, 2000);
+        }, 1500);
       },
       error => {
+        this.buttonsBlocked = false;
         this.successMessage = '';
         this.errorMessage = 'Cannot add match! Contact admin if you are still having a problem';
       }
@@ -136,6 +139,7 @@ export class AddMatchModal implements OnInit, OnDestroy {
     this.date = '';
     this.successMessage = '';
     this.errorMessage = '';
+    this.buttonsBlocked = false;
 
     $('#add-match-modal').modal('show');
   }
