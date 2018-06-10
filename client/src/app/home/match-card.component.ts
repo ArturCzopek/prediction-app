@@ -17,6 +17,32 @@ import {MatchWithUserType} from "../shared/model";
       justify-content: space-around;
     }
 
+    .match-card__ribbon {
+      width: 128px;
+      height: 134px;
+      overflow: hidden;
+      position: absolute;
+      top: 14px;
+      left: 15px
+    }
+
+    .match-card__ribbon span {
+      position: absolute;
+      display: block;
+      width: 150px;
+      padding: 11px 0;
+      background-color: #21BA45;
+      box-shadow: 0 5px 10px rgba(0,0,0,.1);
+      color: #fff;
+      font: 700 18px/1 'Lato', sans-serif;
+      text-shadow: 0 1px 1px rgba(0,0,0,.2);
+      text-transform: uppercase;
+      text-align: center;
+      right: 15px;
+      top: 20px;
+      transform: rotate(-45deg);
+    }
+
     .match-card--red {
       background-color: #ff6f5f;
     }
@@ -116,6 +142,7 @@ import {MatchWithUserType} from "../shared/model";
   `],
   template: `
     <div class="match-card" [ngClass]="classForUserType">
+      <div *ngIf="isRibbon" class="match-card__ribbon"><span>Added</span></div>
       <div class="match-card__content">
         <div class="match-card__content__title">
           <div class="match-card__content__title__team1">{{matchWithType.match.team1}}</div>
@@ -156,6 +183,7 @@ export class MatchCardComponent implements OnInit {
   public goals1 = '-';
   public goals2 = '-';
   public pointsForType = '-';
+  public isRibbon = false;
   private resultAdded = false;
 
   constructor(
@@ -183,6 +211,7 @@ export class MatchCardComponent implements OnInit {
 
 
     this.classForUserType = this.getClassForUserType();
+    this.isRibbon = this.isRibbonAvailable();
   }
 
   private getClassForUserType(): string {
@@ -197,6 +226,10 @@ export class MatchCardComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  private isRibbonAvailable(): boolean {
+    return !this.resultAdded && this.matchWithType.type && Number.isInteger(this.matchWithType.type.goals1) && Number.isInteger(this.matchWithType.type.goals2);
   }
 
   public getFormattedType() {

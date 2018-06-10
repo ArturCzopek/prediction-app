@@ -161,6 +161,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [x] - FE - enter button actions
 - [x] - FE - better closing modal behaviors
 
+## Done - 1.1.2
+- [x] - FE - added ribbon in the match corner when typed is added by user
 
 ## License
 
