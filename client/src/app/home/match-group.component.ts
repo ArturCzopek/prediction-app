@@ -23,5 +23,5 @@ import {MatchWithUserType} from "../shared/model";
 export class MatchGroupComponent {
 
   @Input() label: string;
-  @Input() matchGroup: Array<MatchWithUserType>;
+  @Input() matchGroup: MatchWithUserType[];
 }

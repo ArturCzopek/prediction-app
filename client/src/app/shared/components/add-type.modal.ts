@@ -36,9 +36,22 @@ declare var $: any;
     label {
       font-size: 20px !important;
     }
+
+    @media only screen and (max-width: 767px) {
+      .inline.field {
+        flex-basis: 48% !important;
+      }
+      
+      .form-separator {
+        flex-basis: 4% !important;
+        height: 37.8px;
+        justify-content: center;
+        margin-bottom: 14px;
+      }
+    }
   `],
   template: `
-    <div id="add-type-modal" class="ui small modal">
+    <div id="add-type-modal" class="ui small modal" (keyup.enter)="(!buttonsBlocked) ? addType() : null">
       <div class="header">Add Type</div>
       <div class="content">
         <div class="ui positive message" *ngIf="successMessage">
@@ -56,7 +69,7 @@ declare var $: any;
               <input type="number" min="0" step="1" [(ngModel)]="goals1">
             </div>
             <div class="form-separator">
-              vs
+              <p>vs</p>
             </div>
             <div class="inline field">
               <input type="number" min="0" step="1" [(ngModel)]="goals2">
@@ -67,9 +80,9 @@ declare var $: any;
       </div>
       <div class="actions">
         <div class="ui buttons">
-          <button class="ui positive button" (click)="addType()" [class.disabled]="!isTypeValid()">Add</button>
+          <button class="ui positive button" (click)="addType()" [class.disabled]="!isTypeValid() || buttonsBlocked">Add</button>
           <div class="or"></div>
-          <button class="ui button" (click)="closeModal()">Cancel</button>
+          <button class="ui button" (click)="closeModal()" [class.disabled]="buttonsBlocked">Cancel</button>
         </div>
       </div>
     </div>
@@ -82,6 +95,7 @@ export class AddTypeModal implements OnInit, OnDestroy {
   public goals2 = 0;
   public successMessage = '';
   public errorMessage = '';
+  public buttonsBlocked = false;
   private openModal$: Subscription;
 
   constructor(
@@ -97,7 +111,7 @@ export class AddTypeModal implements OnInit, OnDestroy {
     });
 
     $('#add-type-modal').modal({
-      closeable: false,
+      closable: false,
       onApprove: () => false
     });
   }
@@ -114,6 +128,7 @@ export class AddTypeModal implements OnInit, OnDestroy {
   }
 
   addType() {
+    this.buttonsBlocked = true;
     this.typeService.addNewType(
       <NewType> {
         matchId: this.currentMatchWithType.match.id,
@@ -127,9 +142,10 @@ export class AddTypeModal implements OnInit, OnDestroy {
         setTimeout(() => {
           this.closeModal();
           this.streamService.callRefreshHomePage();
-        }, 2000);
+        }, 1500);
       },
       error => {
+        this.buttonsBlocked = false;
         this.successMessage = '';
         this.errorMessage = 'Cannot add type! Contact admin if you are still having a problem';
       }
@@ -141,8 +157,9 @@ export class AddTypeModal implements OnInit, OnDestroy {
   }
 
   private openModal() {
-    this.goals1 = (this.currentMatchWithType.type) ? this.currentMatchWithType.type.goals1 : 0;
-    this.goals2 = (this.currentMatchWithType.type) ? this.currentMatchWithType.type.goals2 : 0;
+    this.buttonsBlocked = false;
+    this.goals1 = this.currentMatchWithType.type ? this.currentMatchWithType.type.goals1 : 0;
+    this.goals2 = this.currentMatchWithType.type ? this.currentMatchWithType.type.goals2 : 0;
     this.successMessage = '';
     this.errorMessage = '';
 
