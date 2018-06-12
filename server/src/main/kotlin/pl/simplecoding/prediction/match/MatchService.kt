@@ -7,7 +7,10 @@ import pl.simplecoding.prediction.result.ResultService
 import pl.simplecoding.prediction.type.TypeRepository
 import pl.simplecoding.prediction.user.UserRole
 import pl.simplecoding.prediction.user.UserService
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.ZoneId
 
 const val matchTimeInHours = 2L
 
@@ -19,10 +22,9 @@ class MatchService(
         private val userService: UserService
 ) {
 
-    fun getAllMatchesWithUserTypes(login: String) = matchRepository.findAll()
-            .map { MatchWithUserType(it, typeRepository.findByMatch_IdAndUser_login(it.id!!, login)) }
-            .sortedBy { it.match.time }
-            .groupBy { it.match.label }
+    fun getAllMatchesWithUserTypes(login: String) = convertToLabeledAndSortedMatched(matchRepository.findAll(), login)
+
+    fun getTodayMatchesWithUserTypes(login: String) = convertToLabeledAndSortedMatched(matchRepository.findByTimeBetween(getTodayMidnight(), getTomorrowMidnight()), login)
 
     fun addMatch(newMatchDto: NewMatchDto, authentication: Authentication) = with(newMatchDto) {
         require(LocalDateTime.now() < this.time) { "You cannot add past matches" }
@@ -56,6 +58,15 @@ class MatchService(
             resultService.calculateResultForMatch(it.id!!)
         }
     }
+
+    private fun convertToLabeledAndSortedMatched(matches: MutableIterable<Match>, login: String) = matches
+            .map { MatchWithUserType(it, typeRepository.findByMatch_IdAndUser_login(it.id!!, login)) }
+            .sortedBy { it.match.time }
+            .groupBy { it.match.label }
+
+    private fun getTodayMidnight() = LocalDateTime.of(LocalDate.now(ZoneId.of("Europe/Berlin")), LocalTime.MIDNIGHT)
+
+    private fun getTomorrowMidnight() = getTodayMidnight().plusDays(1)
 
     companion object : KLogging()
 }

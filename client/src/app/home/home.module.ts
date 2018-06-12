@@ -7,6 +7,7 @@ import {SharedModule} from "../shared/shared.module";
 import {MatchCardComponent} from "./match-card.component";
 import {AddMatchComponent} from "./add-match.component";
 import {HelloComponent} from "./hello.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {HelloComponent} from "./hello.component";
   ],
   imports: [
     CommonModule,
+    FormsModule,
     HttpClientModule,
     SharedModule
   ],

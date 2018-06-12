@@ -22,6 +22,11 @@ export class DateService {
     return moment(dateFromForm).format('YYYY-MM-DD HH:mm:ss');
   }
 
+  public isDateToday(dateFromDb: string) {
+    const today = moment().startOf('day');
+    return this.formatDbDateToMomentDate(dateFromDb).isSame(today, 'd');
+  }
+
   private formatDbDateToMomentDate(dateFromDb: string): any {
     return moment(dateFromDb.replace('T', ' '), 'YYYY-MM-DD HH:mm:ss');
   }

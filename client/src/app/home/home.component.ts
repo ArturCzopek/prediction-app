@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {MatchService} from "../shared/services/match.service";
 import {AuthService} from "../shared/services/auth.service";
 import {Subscription} from "rxjs/internal/Subscription";
@@ -13,17 +13,26 @@ import {MatchWithUserType} from "../shared/model";
       height: 100%;
       padding-top: 40px;
     }
+    
+    .ui.checkbox {
+      margin-top: 20px;
+    }
   `],
   template: `
     <div class="ui container" *ngIf="authService.isLoggedIn()">
       <sc-hello></sc-hello>
       <sc-add-match *ngIf="authService.isLoggedInAsAdmin()"></sc-add-match>
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" [(ngModel)]="showOnlyTodayMatches">
+        <label>Only today's matches</label>
+      </div>
       <sc-loader *ngIf="isLoading"></sc-loader>
       <sc-error-message *ngIf="!isLoading && isError"></sc-error-message>
       <ng-container *ngIf="!isLoading && !isError && matchesWithUserType">
         <sc-match-group *ngFor="let label of objectKeys(matchesWithUserType); trackBy: trackByLabel"
                         [label]="label"
                         [matchGroup]="matchesWithUserType[label]"
+                        [showOnlyTodayMatches]="showOnlyTodayMatches"
         ></sc-match-group>
       </ng-container>
     </div>
@@ -34,7 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   public objectKeys = Object.keys;
   public isLoading = true;
   public isError = false;
-  public matchesWithUserType: Map<String, Array<MatchWithUserType>> = null;
+  public matchesWithUserType: Map<String, MatchWithUserType[]> = null;
+  public showOnlyTodayMatches = false;
   private refreshPage$: Subscription;
 
   constructor(

@@ -43,8 +43,16 @@ import {MatchWithUserType} from "../shared/model";
       transform: rotate(-45deg);
     }
 
+    .match-card__ribbon span.green {
+      background-color: #21BA45;
+    }
+    
+    .match-card__ribbon span.red {
+      background-color: #DB2828;
+    }
+
     .match-card--red {
-      background-color: #ff6f5f;
+      background: rgba(219,40,40,.15);
     }
 
     .match-card--yellow {
@@ -141,8 +149,9 @@ import {MatchWithUserType} from "../shared/model";
     }
   `],
   template: `
-    <div class="match-card" [ngClass]="classForUserType">
-      <div *ngIf="isRibbon" class="match-card__ribbon"><span>Added</span></div>
+    <div class="match-card" [ngClass]="classForUserType" *ngIf="isValidDateToShow()">
+      <div *ngIf="isTyped" class="match-card__ribbon"><span class="green">Added</span></div>
+      <div *ngIf="isTodayNotTyped" class="match-card__ribbon"><span class="red">Today!</span></div>
       <div class="match-card__content">
         <div class="match-card__content__title">
           <div class="match-card__content__title__team1">{{matchWithType.match.team1}}</div>
@@ -174,6 +183,8 @@ import {MatchWithUserType} from "../shared/model";
 export class MatchCardComponent implements OnInit {
 
   @Input() matchWithType: MatchWithUserType;
+  @Input() showOnlyTodayMatches: boolean;
+
   public isActionAvailable = false;
   public isAdmin = false;
   public canPredict = false;
@@ -183,7 +194,8 @@ export class MatchCardComponent implements OnInit {
   public goals1 = '-';
   public goals2 = '-';
   public pointsForType = '-';
-  public isRibbon = false;
+  public isTyped = false;
+  public isTodayNotTyped = false;
   private resultAdded = false;
 
   constructor(
@@ -211,7 +223,8 @@ export class MatchCardComponent implements OnInit {
 
 
     this.classForUserType = this.getClassForUserType();
-    this.isRibbon = this.isRibbonAvailable();
+    this.isTyped = this.isTypedRibbonAvailable();
+    this.isTodayNotTyped = this.isTodayNotTypedRibbonAvailable();
   }
 
   private getClassForUserType(): string {
@@ -228,8 +241,12 @@ export class MatchCardComponent implements OnInit {
     }
   }
 
-  private isRibbonAvailable(): boolean {
+  private isTypedRibbonAvailable(): boolean {
     return !this.resultAdded && this.matchWithType.type && Number.isInteger(this.matchWithType.type.goals1) && Number.isInteger(this.matchWithType.type.goals2);
+  }
+
+  private isTodayNotTypedRibbonAvailable(): boolean {
+    return !this.matchWithType.type && this.canPredict && this.dateService.isDateToday(this.matchWithType.match.time);
   }
 
   public getFormattedType() {
@@ -245,11 +262,11 @@ export class MatchCardComponent implements OnInit {
     this.streamService.callAddTypeModal(this.matchWithType);
   }
 
-  private arePointsForType(): boolean {
-    if (!this.matchWithType.type) {
-      return false;
-    }
+  public isValidDateToShow() {
+    return !this.showOnlyTodayMatches || (this.showOnlyTodayMatches && this.dateService.isDateToday(this.matchWithType.match.time));
+  }
 
-    return Number.isInteger(this.matchWithType.type.pointsForType);
+  private arePointsForType(): boolean {
+    return !this.matchWithType.type ? false : Number.isInteger(this.matchWithType.type.pointsForType);
   }
 }

@@ -1,0 +1,15 @@
+Hello, [(${userName})]!
+
+We have some matches today.
+
+Matches WITHOUT YOUR TYPE - [(${matchesNotTypedAmount})]. Don't forget to submit your type:
+[# th:each="matchWithType : ${matchesNotTyped}"]
+   - [(${matchWithType.match.fullLabel})]
+[/]
+Matches with your type - [(${matchesTypedAmount})]. You can still change them if you want to:
+[# th:each="matchWithType : ${matchesTyped}"]
+   - [(${matchWithType.match.fullLabel})] - [(${matchWithType.type.goals1})]:[(${matchWithType.type.goals2})]
+[/]
+Today's matches are assigned in application by red ribbon in top-left corner with label "TODAY".
+
+Good Luck!

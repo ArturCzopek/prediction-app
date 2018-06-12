@@ -112,7 +112,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * **Karol Klimończyk** - *developer*
 
 
-## To do - 1.2.0
+## To do - 1.3.0
 
 - [ ] - FE - block buttons when request on modal is sent
 - [ ] - D - installation instruction
@@ -121,7 +121,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 - [ ] - BE - CI/CD process
 - [ ] - I - license
 
-## Todo - 1.3.0
+## Todo - 1.4.0
 
 - [ ] - FE - privacy policy etc
 - [ ] - FE/BE - messaging system to admin with restrictions
@@ -163,6 +163,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Done - 1.1.2
 - [x] - FE - added ribbon in the match corner when typed is added by user
+
+## Done - 1.2.0
+- [x] - FE - added ribbon with information when match is today and there is no type
+- [x] - FE - added filter to today's matches only
+- [x] - BE - added mail service with notification about today's matches
 
 ## License
 

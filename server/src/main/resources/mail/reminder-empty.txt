@@ -1,0 +1,9 @@
+Hello, [(${userName})]!
+
+It looks like you typed all matches. Well done! Short summary:
+[# th:each="matchWithType : ${matchesTyped}"]
+   - [(${matchWithType.match.fullLabel})] - [(${matchWithType.type.goals1})]:[(${matchWithType.type.goals2})]
+[/]
+You can still change them if you want to. Today's matches are assigned in application by red ribbon in top-left corner with label "TODAY".
+
+Good Luck!
