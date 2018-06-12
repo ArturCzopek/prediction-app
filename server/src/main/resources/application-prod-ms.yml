@@ -21,7 +21,10 @@ spring:
       enabled: false
     remote:
       restart:
-        enabled: false
+        enabled:
+  mail:
+    from: ${MS_PRED_MAIL}
+    host: ${MS_PRED_HOST}
 server:
   address: ${MS_PRED_APP_URL}
   port: ${MS_PRED_APP_PORT}

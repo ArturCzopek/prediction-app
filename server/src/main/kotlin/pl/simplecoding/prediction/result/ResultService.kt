@@ -34,7 +34,7 @@ class ResultService(
 
     fun getTable(): List<AllResultsForUser> {
         val matchesToCheck = matchRepository.findAllByResultAddedTrue(Sort.by("id"))
-        return userRepository.findAll()
+        return userRepository.findByEnabledTrue()
                 .map {
                     AllResultsForUser(
                             fullUserName = it.fullName,
@@ -58,8 +58,8 @@ class ResultService(
         else -> noPoints
     }
 
-    private fun getAllResultsForUser(login: String, matches: List<Match>) = matches
-            .mapIndexed { _, match -> ResultForMatch(match.fullLabel, typeRepository.findByMatch_IdAndUser_login(match.id!!, login)?.pointsForType) }
+    private fun getAllResultsForUser(login: String, matches: MutableIterable<Match>) = matches
+            .map { ResultForMatch(it.fullLabel, typeRepository.findByMatch_IdAndUser_login(it.id!!, login)?.pointsForType) }
 
     companion object : KLogging()
 }

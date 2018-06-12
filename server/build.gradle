@@ -27,7 +27,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'pl.simplecoding'
-version = '1.1.2'
+version = '1.2.0'
 sourceCompatibility = 1.8
 compileKotlin {
     kotlinOptions {
@@ -39,6 +39,12 @@ compileTestKotlin {
     kotlinOptions {
         freeCompilerArgs = ["-Xjsr305=strict"]
         jvmTarget = "1.8"
+    }
+}
+
+kotlin {
+    experimental {
+        coroutines 'enable'
     }
 }
 
@@ -69,18 +75,23 @@ task buildFrontProdMs(type: Exec) {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-mail')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.0.5')
     compile('org.springframework.security:spring-security-oauth2-client')
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile('org.liquibase:liquibase-core')
     compile('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
     compile('org.jetbrains.kotlin:kotlin-reflect')
+    compile('org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21')
     compile('io.github.microutils:kotlin-logging:1.5.4')
     compile('com.github.dblock.waffle:waffle-spring-security4:1.8.1')
     compile('com.github.dblock.waffle:waffle-tomcat8:1.8.1')
