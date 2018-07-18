@@ -3,6 +3,7 @@ const PROXY_CONFIG = [
     context: [
       "/api/matches",
       "/api/results",
+      "/api/statistics",
       "/api/types",
       "/api/user",
     ],

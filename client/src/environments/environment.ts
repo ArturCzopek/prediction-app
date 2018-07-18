@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   matchesUrl: 'api/matches',
   resultsUrl: 'api/results',
+  statisticsUrl: 'api/statistics',
   typesUrl: 'api/types',
   usersUrl: 'api/users'
 };

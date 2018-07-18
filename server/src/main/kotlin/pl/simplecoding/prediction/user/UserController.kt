@@ -12,21 +12,19 @@ class UserController(private val userService: UserService) {
     fun getUserData(authentication: Authentication) = userService.getUserByLogin(authentication)
 
     @GetMapping("/all")
-    fun getAllUsers(authentication: Authentication): List<User> {
-        return when (userService.getUserByLogin(authentication)?.role) {
-            UserRole.ADMIN -> userService.getAllUsers()
-            else -> throw IllegalAccessException("User has no access to get users list")
-        }
-    }
+    fun getAllUsers(authentication: Authentication) =
+            when (userService.getUserByLogin(authentication)?.role) {
+                UserRole.ADMIN -> userService.getAllUsers()
+                else -> throw IllegalAccessException("User has no access to get users list")
+            }
 
     @PostMapping("/toggle-enable")
-    fun enableUser(@RequestBody userId: Long, authentication: Authentication): HttpStatus {
-        return when (userService.getUserByLogin(authentication)?.role) {
-            UserRole.ADMIN -> {
-                userService.toggleEnableStatus(userId)
-                HttpStatus.OK
+    fun enableUser(@RequestBody userId: Long, authentication: Authentication) =
+            when (userService.getUserByLogin(authentication)?.role) {
+                UserRole.ADMIN -> {
+                    userService.toggleEnableStatus(userId)
+                    HttpStatus.OK
+                }
+                else -> HttpStatus.FORBIDDEN
             }
-            else -> HttpStatus.FORBIDDEN
-        }
-    }
 }

@@ -21,6 +21,8 @@ import {SharedModule} from "./shared/shared.module";
 import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 import {AdminPanelModule} from "./admin-panel/admin-panel.module";
 import {UsersManagementComponent} from "./admin-panel/users-management.component";
+import {StatisticsService} from "./shared/services/statistics.service";
+import {StatisticsComponent} from "./admin-panel/statistics.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -29,6 +31,7 @@ const routes: Routes = [
   {path: 'results', component: ResultsComponent},
   {path: 'admin', component: AdminPanelComponent},
   {path: 'admin/users', component: UsersManagementComponent},
+  {path: 'admin/statistics', component: StatisticsComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
@@ -52,6 +55,7 @@ const routes: Routes = [
     DateService,
     MatchService,
     ResultService,
+    StatisticsService,
     StreamService,
     TypeService,
     UserService,

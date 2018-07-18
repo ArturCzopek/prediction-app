@@ -31,9 +31,9 @@ import {AuthService} from "../shared/services/auth.service";
         </div>
       </a>
 
-      <a [routerLink]="['/admin/users']" routerLinkActive="active">
+      <a [routerLink]="['/admin/statistics']" routerLinkActive="active">
         <div class="admin-panel-card">
-          <h3>Matches management panel</h3>
+          <h3>Statistics</h3>
         </div>
       </a>
     </div>

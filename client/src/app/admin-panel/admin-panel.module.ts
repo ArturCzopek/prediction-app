@@ -5,6 +5,7 @@ import {CommonModule} from '@angular/common';
 import {SharedModule} from "../shared/shared.module";
 import {UsersManagementComponent} from "./users-management.component";
 import {RouterModule, Routes} from "@angular/router";
+import {StatisticsComponent} from "./statistics.component";
 
 const routes: Routes = [
   {path: 'admin/users', component: UsersManagementComponent}
@@ -13,7 +14,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AdminPanelComponent,
-    UsersManagementComponent
+    UsersManagementComponent,
+    StatisticsComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {useHash: true}),
   ],
   exports: [
-    AdminPanelComponent
+    AdminPanelComponent,
+    StatisticsComponent
   ]
 })
 export class AdminPanelModule {

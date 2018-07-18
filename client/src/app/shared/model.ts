@@ -72,3 +72,8 @@ export interface UserInfo {
   fullName: string,
   enabled: boolean
 }
+
+export interface StatRecord {
+  key: string,
+  value: any
+}
